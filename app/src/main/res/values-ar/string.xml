@@ -5,10 +5,10 @@
     <string name="home">الصفحة الرئيسية</string>
     <string name="language">اللغة</string>
     <string name="read_more">قرأة المزيد</string>
-    <string name="long_message">هل أنت متأكد من حذف كل هذه المقالات؟</string>
+    <string name="long_message">هل أنت متأكد من حذف الكل؟</string>
     <string name="cancel">الغاء</string>
     <string name="accept">موافق</string>
-    <string name="snackbar_label">حذف المقالهزز</string>
+    <string name="snackbar_label">حذف المقالة</string>
     <string name="snackbar_label_save">تم حفظ المقالة</string>
     <string name="action_text">أسترجاع</string>
     <string name="save_label">لم يتم حفظ مقالة بعد!</string>
