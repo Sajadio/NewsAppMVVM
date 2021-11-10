@@ -29,3 +29,7 @@ This app is very simple contains the following:
   <img src="https://user-images.githubusercontent.com/84254470/141067537-88532450-e736-4ac9-9af8-3630d8302d75.png" width="300" hieght="400">
   <img src="https://user-images.githubusercontent.com/84254470/141107362-29bef62e-78f5-41d7-9379-2e1977f08be4.png" width="300" hieght="400">
 </p>
+<br>
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/84254470/141107362-29bef62e-78f5-41d7-9379-2e1977f08be4.png" width="300" hieght="400">
+</p>
