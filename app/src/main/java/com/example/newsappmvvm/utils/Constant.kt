@@ -5,7 +5,7 @@ import com.example.newsappmvvm.R
 import java.util.*
 import org.ocpsoft.prettytime.PrettyTime
 
-const val API_KEY = "712f8b1496134646a52f5282da844fb6"//6953a7421bb749c589e687746c85eee8
+const val API_KEY = "712f8b1496134646a52f5282da844fb6"
 const val BASE_URL = "https://newsapi.org/"
 
 val categories = mutableListOf(
