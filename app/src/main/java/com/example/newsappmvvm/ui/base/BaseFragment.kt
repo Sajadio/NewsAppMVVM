@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import com.example.newsappmvvm.R
 import com.example.newsappmvvm.ui.NewsActivity
 import com.example.newsappmvvm.ui.viewmodel.NewsViewModel
-import com.example.newsappmvvm.utils.NetworkHelper
 
 abstract class BaseFragment<DB : ViewDataBinding>(@LayoutRes private val layoutId: Int) :
     Fragment() {

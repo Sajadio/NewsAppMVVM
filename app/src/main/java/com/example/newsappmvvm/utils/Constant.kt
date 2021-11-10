@@ -38,23 +38,4 @@ val categoryImg = intArrayOf(
     R.drawable.tech
 )
 
-fun dateToTimeFormat(time: String): String {
-    val prettyTime = PrettyTime(Locale(getCountry()))
-    var isTime: String? = null
-    val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.ENGLISH)
-    val date: Date = sdf.parse(time)
-    isTime = prettyTime.format(date)
-    return isTime
-}
-
-fun dateFormat(time: String?): String? {
-    val newDate: String?
-    val dateFormat = SimpleDateFormat("E, d MMM yyyy", Locale(getCountry()))
-    val date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").parse(time)
-    newDate = dateFormat.format(date)
-    return newDate
-}
-
 fun getCountry() = (Locale.getDefault().country).toLowerCase()
-
-fun times(value:String) = value

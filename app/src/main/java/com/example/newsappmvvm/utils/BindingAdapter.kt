@@ -1,7 +1,6 @@
 package com.example.newsappmvvm.utils
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.View
 import android.view.View.*
 import android.widget.ImageView

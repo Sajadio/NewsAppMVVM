@@ -2,7 +2,6 @@ package com.example.newsappmvvm.model.network
 
 import com.example.newsappmvvm.model.domen.News
 import com.example.newsappmvvm.utils.API_KEY
-import com.example.newsappmvvm.utils.categories
 import retrofit2.http.GET
 import retrofit2.http.Query
 

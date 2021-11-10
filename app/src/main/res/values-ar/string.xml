@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">NewsAppMVVM</string>
+    <string name="app_name">The Week</string>
     <string name="favorite">المحفوظات</string>
     <string name="home">الصفحة الرئيسية</string>
     <string name="language">اللغة</string>

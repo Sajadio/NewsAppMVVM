@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NewsAppMVVM</string>
+    <string name="app_name">The Week</string>
     <string name="favorite">Favorite</string>
     <string name="home">Home</string>
     <string name="language">Languages</string>

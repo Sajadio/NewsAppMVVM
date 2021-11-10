@@ -1,7 +1,6 @@
 package com.example.newsappmvvm.model.domen
 
 import android.icu.text.SimpleDateFormat
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
