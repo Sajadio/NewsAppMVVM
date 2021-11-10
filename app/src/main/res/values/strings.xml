@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">NewsAppMVVM</string>
+    <string name="favorite">Favorite</string>
+    <string name="home">Home</string>
+    <string name="language">Languages</string>
+    <string name="read_more">Read more</string>
+    <string name="long_message">Are you sure to delete all this articles?</string>
+    <string name="cancel">Cancel</string>
+    <string name="accept">Yes</string>
+    <string name="snackbar_label">Delete Article..</string>
+    <string name="snackbar_label_save">Article saved</string>
+    <string name="action_text">UNDO</string>
+    <string name="save_label">No save article yet!</string>
+    <string name="rec_lable">Top Headlines</string>
+    <string name="theme">Theme</string>
+    <string name="english">English</string>
+    <string name="arabic">Arabic</string>
+    <string name="dark">Dark</string>
+    <string name="light">Light</string>
+    <string name="content">Content</string>
+    <string name="general">general</string>
+    <string name="business">business</string>
+    <string name="entertainment">entertainment</string>
+    <string name="health">health</string>
+    <string name="science">science</string>
+    <string name="sports">sports</string>
+    <string name="technology">technology</string>
+    <string name="retry">Retry</string>
+    <string name="errorNetwork">Something wrong!</string>
+    <string name="noConnection">No connection</string>
+</resources>
