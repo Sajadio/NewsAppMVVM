@@ -1,4 +1,4 @@
-# NewsAppMVVM
+# The Week Android app
 
 This app is very simple contains the following:
 
