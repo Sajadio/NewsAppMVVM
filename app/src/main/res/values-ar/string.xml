@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">The Week</string>
     <string name="favorite">المحفوظات</string>
-    <string name="home">الصفحة الرئيسية</string>
+    <string name="home"> الرئيسية</string>
     <string name="language">اللغة</string>
     <string name="read_more">قرأة المزيد</string>
     <string name="long_message">هل أنت متأكد من حذف الكل؟</string>

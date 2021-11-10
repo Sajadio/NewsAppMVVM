@@ -4,7 +4,7 @@
     <string name="home">Home</string>
     <string name="language">Languages</string>
     <string name="read_more">Read more</string>
-    <string name="long_message">Are you sure to delete all this articles?</string>
+    <string name="long_message">Are you sure to delete all?</string>
     <string name="cancel">Cancel</string>
     <string name="accept">Yes</string>
     <string name="snackbar_label">Delete Article..</string>
