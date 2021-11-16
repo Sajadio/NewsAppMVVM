@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.newsappmvvm.ui.viewmodel.NewsViewModel" />
+            type="com.example.newsappmvvm.presentation.ui.viewmodel.NewsViewModel" />
 
     </data>
 
@@ -65,40 +65,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:loading="@{viewModel.newsQuery}" />
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/containerConnection"
-            style="@style/Widget.MaterialComponents.Toolbar.Surface"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:visibility="invisible"
-            android:orientation="vertical"
-            app:connection="@{viewModel.connection}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/img"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_rawRes="@raw/connection" />
-
-            <TextView
-                android:id="@+id/txtError"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/noConnection"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:text="this is for tesing" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

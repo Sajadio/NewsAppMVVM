@@ -8,7 +8,7 @@
 
         <variable
             name="items"
-            type="com.example.newsappmvvm.model.domen.Article" />
+            type="com.example.newsappmvvm.data.model.domen.Article" />
 
     </data>
 

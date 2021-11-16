@@ -7,11 +7,11 @@
 
         <variable
             name="items"
-            type="com.example.newsappmvvm.model.domen.Article" />
+            type="com.example.newsappmvvm.data.model.domen.Article" />
 
         <variable
             name="viewModel"
-            type="com.example.newsappmvvm.ui.viewmodel.NewsViewModel" />
+            type="com.example.newsappmvvm.presentation.ui.viewmodel.NewsViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

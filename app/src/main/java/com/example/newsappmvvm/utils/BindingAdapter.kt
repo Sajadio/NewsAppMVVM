@@ -1,13 +1,16 @@
 package com.example.newsappmvvm.utils
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.View
 import android.view.View.*
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.newsappmvvm.model.domen.Article
-import com.example.newsappmvvm.ui.adapter.NewsAdapter
+import com.example.newsappmvvm.data.model.domen.Article
+import com.example.newsappmvvm.presentation.ui.adapter.NewsAdapter
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 @SuppressLint("NotifyDataSetChanged")
 @BindingAdapter(value = ["app:adapter"])
@@ -44,11 +47,10 @@ fun <T> View.loading(state: NetworkStatus<T>?) {
 
 @BindingAdapter(value = ["app:connection"])
 fun View.connection(connection: Boolean?) {
-    if (connection == true)
-        this.visibility = INVISIBLE
-    else
+    if (connection == false)
         this.visibility = VISIBLE
-
+    else
+        this.visibility = INVISIBLE
 }
 
 @BindingAdapter(value = ["app:src"])

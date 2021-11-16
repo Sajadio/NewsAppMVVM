@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:label= "@string/home"
-        android:name="com.example.newsappmvvm.ui.fragment.HomeFragment">
+        android:name="com.example.newsappmvvm.presentation.ui.fragment.HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_favoriteFragment"
             app:destination="@id/favoriteFragment" />
@@ -21,24 +21,24 @@
     <fragment
         android:id="@+id/favoriteFragment"
         android:label= "@string/favorite"
-        android:name="com.example.newsappmvvm.ui.fragment.FavoriteFragment">
+        android:name="com.example.newsappmvvm.presentation.ui.fragment.FavoriteFragment">
         <action
             android:id="@+id/action_favoriteFragment_to_articleFragment"
             app:destination="@id/articleFragment" />
         <argument
             android:name="article"
-            app:argType="com.example.newsappmvvm.model.domen.Article" />
+            app:argType="com.example.newsappmvvm.data.model.domen.Article" />
     </fragment>
     <fragment
         android:id="@+id/webViewFragment"
-        android:name="com.example.newsappmvvm.ui.fragment.WebViewFragment">
+        android:name="com.example.newsappmvvm.presentation.ui.fragment.WebViewFragment">
         <argument
             android:name="article"
-            app:argType="com.example.newsappmvvm.model.domen.Article" />
+            app:argType="com.example.newsappmvvm.data.model.domen.Article" />
     </fragment>
     <fragment
         android:id="@+id/categoryFragment"
-        android:name="com.example.newsappmvvm.ui.fragment.CategoryFragment" >
+        android:name="com.example.newsappmvvm.presentation.ui.fragment.CategoryFragment" >
         <action
             android:id="@+id/action_categoryFragment_to_articleFragment"
             app:destination="@id/articleFragment" />
@@ -49,13 +49,13 @@
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
-        android:name="com.example.newsappmvvm.ui.fragment.ArticleFragment"
+        android:name="com.example.newsappmvvm.presentation.ui.fragment.ArticleFragment"
         android:label="ArticleFragment">
         <action
             android:id="@+id/action_articleFragment_to_webViewFragment"
             app:destination="@id/webViewFragment" />
         <argument
             android:name="article"
-            app:argType="com.example.newsappmvvm.model.domen.Article" />
+            app:argType="com.example.newsappmvvm.data.model.domen.Article" />
     </fragment>
 </navigation>

@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.newsappmvvm.ui.viewmodel.NewsViewModel" />
+            type="com.example.newsappmvvm.presentation.ui.viewmodel.NewsViewModel" />
     </data>
 
 
@@ -22,7 +22,7 @@
             android:id="@+id/favoriteVertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:adapter="@{viewModel.getAllArticle}"
+            app:adapter="@{viewModel.getSavedArticle}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
             android:text="@string/save_label"
             tools:text="@string/save_label"
             android:textColor="@color/dark_gray"
-            app:visibleView="@{viewModel.getAllArticle.size()}"
+            app:visibleView="@{viewModel.getSavedArticle.size()}"
             android:textSize="24sp"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
