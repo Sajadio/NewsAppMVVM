@@ -1,15 +1,12 @@
 package com.example.newsappmvvm.presentation.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
@@ -20,8 +17,6 @@ import com.example.newsappmvvm.data.model.repository.Repository
 import com.example.newsappmvvm.presentation.ui.viewmodel.NewsViewModel
 import com.example.newsappmvvm.presentation.ui.viewmodel.NewsViewModelProvider
 import com.example.newsappmvvm.utils.NetworkHelper
-import com.example.newsappmvvm.utils.hasInternetConnection
-import com.google.android.material.snackbar.Snackbar
 
 class NewsActivity : AppCompatActivity() {
 
@@ -38,6 +33,9 @@ class NewsActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         connection()
+        binding.btnRetry.setOnClickListener {
+            connection()
+        }
 
 
         val navHostFragment =
@@ -52,11 +50,10 @@ class NewsActivity : AppCompatActivity() {
     }
 
     private fun connection() {
-        viewModel.connection.postValue(hasInternetConnection())
-        networkHelper = NetworkHelper(application)
+        networkHelper = NetworkHelper(application,this)
         networkHelper.observe(this) {
             viewModel.connection.postValue(it)
-            if (it)
+            if (it == R.string.connection)
                 viewModel.getSearchingQuery("sport")
         }
     }

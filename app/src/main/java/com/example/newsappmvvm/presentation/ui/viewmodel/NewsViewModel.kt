@@ -1,15 +1,10 @@
 package com.example.newsappmvvm.presentation.ui.viewmodel
 
-import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.newsappmvvm.data.model.domen.Article
 import com.example.newsappmvvm.data.model.domen.News
 import com.example.newsappmvvm.data.model.repository.Repository
-import com.example.newsappmvvm.presentation.ui.MyApplication
 import com.example.newsappmvvm.utils.NetworkStatus
-import com.example.newsappmvvm.utils.hasInternetConnection
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -24,7 +19,7 @@ class NewsViewModel(
     val newsQuery: LiveData<NetworkStatus<News>> get() = _newsQuery
 
     val getSavedArticle: LiveData<List<Article>> = repository.getSavedArticle()
-    val connection = MutableLiveData<Boolean>()
+    val connection = MutableLiveData<Int>()
 
     fun getBreakingNews(category: String) {
         viewModelScope.launch {

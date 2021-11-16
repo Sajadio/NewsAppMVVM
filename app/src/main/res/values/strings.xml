@@ -28,4 +28,6 @@
     <string name="retry">Retry</string>
     <string name="errorNetwork">Something wrong!</string>
     <string name="noConnection">No connection</string>
+    <string name="connection"></string>
+    <string name="noInternet">No internet!</string>
 </resources>

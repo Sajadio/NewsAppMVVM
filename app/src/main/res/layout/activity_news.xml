@@ -52,10 +52,16 @@
                 android:id="@+id/txtError"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/noConnection"
+                app:textStateConnection="@{viewModel.connection}"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 tools:text="this is for tesing" />
+
+            <Button
+                android:id="@+id/btnRetry"
+                android:text="@string/retry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

@@ -1,11 +1,13 @@
 package com.example.newsappmvvm.utils
 
+import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import androidx.lifecycle.LiveData
+import com.example.newsappmvvm.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,14 +16,29 @@ import java.io.IOException
 import java.net.InetSocketAddress
 import javax.net.SocketFactory
 
-class NetworkHelper(context: Context) : LiveData<Boolean>() {
+class NetworkHelper(private val application: Application, context: Context) : LiveData<Int>() {
 
     private lateinit var networkCallback: ConnectivityManager.NetworkCallback
     private val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-    private val validNetworks: MutableSet<Network> = HashSet()
 
-    private fun checkValidNetworks() {
-        postValue(validNetworks.size > 0)
+    init {
+        if (!hasInternetConnection())
+            postValue(R.string.noConnection)
+    }
+
+    private fun hasInternetConnection(): Boolean {
+        val connectivityManager = application.getSystemService(
+            Context.CONNECTIVITY_SERVICE,
+        ) as ConnectivityManager
+
+        val activeNetwork = connectivityManager.activeNetwork ?: return false
+        val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
+        return when {
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+            else -> false
+        }
     }
 
     override fun onActive() {
@@ -47,20 +64,18 @@ class NetworkHelper(context: Context) : LiveData<Boolean>() {
                 CoroutineScope(Dispatchers.IO).launch {
 
                     val hasInternet = DoesNetworkHaveInternet.execute(network.socketFactory)
-
-                    if (hasInternet) {
-                        withContext(Dispatchers.Main) {
-                            validNetworks.add(network)
-                            checkValidNetworks()
-                        }
+                    withContext(Dispatchers.Main) {
+                        if (hasInternet) {
+                            postValue(R.string.connection)
+                        } else
+                            postValue(R.string.noInternet)
                     }
                 }
             }
         }
 
         override fun onLost(network: Network) {
-            validNetworks.remove(network)
-            checkValidNetworks()
+            postValue(R.string.noConnection)
         }
     }
 }

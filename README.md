@@ -8,10 +8,12 @@ This app is very simple contains the following:
 - Kotlin Corotuine,Room Database and more
 
 # UI
+
 - Material Design and Navigation Components
-- [Pretty TimeAgo](https://github.com/shamalka/Pretty-TimeAgo-android-library) library 
+- [Pretty TimeAgo](https://github.com/shamalka/Pretty-TimeAgo-android-library) library
 
 ## something else like:
+
 - Support multi languages
 - Theme mode (Light/Dark)
 

@@ -29,5 +29,7 @@
     <string name="retry">حاول مرة أخرى</string>
     <string name="errorNetwork">حدث خطاء ما!</string>
     <string name="noConnection">لايوجد أتصال بالشبكة!</string>
+    <string name="connection"></string>
+    <string name="noInternet">تأكد من خدمة ألانترنت!</string>
 
 </resources>
