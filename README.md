@@ -3,21 +3,31 @@
 This app is very simple contains the following:
 
 - MVVM
-- Data-Binding
 - Retrofit
-- Kotlin Corotuine,Room Database and more
+- Coroutines
+- MVVM
+- Extension Functions
+- Room
+- Navigation Components
+- Repository Pattern
+- Flow
+- DataBinding
 
 # UI
 
 - Material Design and Navigation Components
 - [Pretty TimeAgo](https://github.com/shamalka/Pretty-TimeAgo-android-library) library
 
-## something else like:
+# Something else like:
 
 - Support multi languages
 - Theme mode (Light/Dark)
 
-## Preview
+# Architecture
+
+![Test Image 4](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
+
+# Screenshots
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/84254470/141066921-066fa605-42e2-4557-8450-33a6b7c2e9a7.png" width="300" hieght="400">
