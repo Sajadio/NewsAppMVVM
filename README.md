@@ -28,8 +28,8 @@ This app is very simple contains the following:
 ![Test Image 4](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
 
 # Screenshots
-| Home |  Headlines | Details | Favorite | .... 
+| Home |  Headlines | Details | Favorite | Disconnection 
 |:-:|:-:|:-:|
-| ![Fist](screenshots/1.png?raw=true) | ![3](screenshots/2.png?raw=true) | ![3](screenshots/3.png?raw=true) | ![4](screenshots/4.png?raw=true) | ![4](screenshots/6.png?raw=true)
-| Home Dark | Headlines Dark |  Details Dark | Favorite Dark | .... Dark |
-| ![4](screenshots/7.png?raw=true) | ![5](screenshots/11.png?raw=true) | ![6](screenshots/8.png?raw=true) | ![6](screenshots/10.png?raw=true) | ![6](screenshots/12.png?raw=true) |
+| ![Fist](screenshots/1.png?raw=true) | ![3](screenshots/2.png?raw=true) | ![3](screenshots/3.png?raw=true) |
+| Home Dark | Headlines Dark |  Details Dark | Favorite Dark | Disconnection Dark |
+| ![4](screenshots/7.png?raw=true) | ![5](screenshots/11.png?raw=true) | ![6](screenshots/8.png?raw=true) |
