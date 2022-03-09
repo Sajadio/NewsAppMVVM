@@ -28,7 +28,7 @@ This app is very simple contains the following:
 ![Test Image 4](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
 
 # Screenshots
-| Home |  Headlines | Details | Favorite | ....
+| Home |  Headlines | Details | Favorite | .... |
 |:-:|:-:|:-:|
 | ![Fist](screenshots/1.png?raw=true) | ![3](screenshots/2.png?raw=true) | ![3](screenshots/3.png?raw=true) | ![4](screenshots/4.png?raw=true) | ![4](screenshots/6.png?raw=true)
 | Home Dark | Headlines Dark |  Details Dark | Favorite Dark | .... Dark |
