@@ -29,7 +29,7 @@ This app is very simple contains the following:
 
 # Screenshots
 | Home |  Headlines |
-|:-:|:-:|:-:|
+|:-:|:-:|
 | ![Fist](screenshots/1.png?raw=true) | ![3](screenshots/2.png?raw=true) | 
 | Favorite | Details  | 
 | ![4](screenshots/4.png?raw=true) | ![3](screenshots/3.png?raw=true) |
