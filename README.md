@@ -31,5 +31,9 @@ This app is very simple contains the following:
 | Home |  Headlines | Details |  
 |:-:|:-:|:-:|
 | ![Fist](screenshots/1.png?raw=true) | ![3](screenshots/2.png?raw=true) | ![3](screenshots/3.png?raw=true) |
+| Favorite | Disconnection | 
+| ![4](screenshots/4.png?raw=true) | ![4](screenshots/6.png?raw=true) |
 | Home Dark | Headlines Dark |  Details Dark |
 | ![4](screenshots/7.png?raw=true) | ![5](screenshots/11.png?raw=true) | ![6](screenshots/8.png?raw=true) |
+| Favorite Dark | Disconnection Dark | 
+| ![4](screenshots/10.png?raw=true) | ![4](screenshots/12.png?raw=true) |
