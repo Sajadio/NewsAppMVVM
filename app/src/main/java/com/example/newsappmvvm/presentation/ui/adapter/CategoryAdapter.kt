@@ -1,4 +1,4 @@
-package com.example.newsappmvvm.ui.adapter
+package com.example.newsappmvvm.presentation.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="black">#05070F</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="white">#FFFFFFFF</color>
 
+    <color name="light_black">#D005070F</color>
+    <color name="blue">#1E3FAC</color>
+    <color name="dark_blue">#081160</color>
+    <color name="light_gray">#C3E5EFFF</color>
+    <color name="dark_gray">#6F6F6F</color>
+    <color name="sky">#30A3FF</color>
 
-    <!--    background colors   -->
-    <color name="background_primary">#FFFFFFFF</color>
-    <color name="background_secondary">#eceff1</color>
-
-    <!--    text colors     -->
-    <color name="textColorHeadLine">#121212</color>
-    <color name="textColorSubTitle">#5A5A5A</color>
-    <color name="textColorHint">#A4A4A4</color>
-
-    <!--    icon colors     -->
-    <color name="icon_color_gray">#A4A4A4</color>
-    <color name="icon_color_orange">#FF5722</color>
-    <color name="icon_color_black">#222225</color>
-    <color name="icon_color_white">#F6F7F2</color>
+    // color placeholder
+    <color name="green">#4CAF50</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="pink">#9C27B0</color>
+    <color name="orang">#F44336</color>
 
 </resources>

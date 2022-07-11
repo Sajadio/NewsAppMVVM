@@ -16,6 +16,15 @@ val categories = mutableListOf(
    R.string.technology,
 )
 
+val randomColor = intArrayOf(
+    R.color.green,
+    R.color.yellow,
+    R.color.pink,
+    R.color.orang,
+    R.color.blue,
+    R.color.sky,
+    R.color.blue
+)
 
 val categoryImg = intArrayOf(
     R.drawable.general,

@@ -9,7 +9,7 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsappmvvm.R
 import com.example.newsappmvvm.data.model.domen.Article
-import com.example.newsappmvvm.ui.fragment.home.adapter.HomeAdapter
+import com.example.newsappmvvm.presentation.ui.adapter.NewsAdapter
 
 
 @SuppressLint("NotifyDataSetChanged")
@@ -17,7 +17,7 @@ import com.example.newsappmvvm.ui.fragment.home.adapter.HomeAdapter
 fun RecyclerView.setAdapter(items: List<Article>?) {
     this.apply {
         setHasFixedSize(true)
-        val adapter = adapter as HomeAdapter
+        val adapter = adapter as NewsAdapter
         items?.let { adapter.updateData(it) }
         adapter.notifyDataSetChanged()
     }

@@ -1,103 +1,26 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.NewsAppMVVM" parent="Theme.MaterialComponents.Light.NoActionBar">
-
-        <item name="colorPrimary">@android:color/holo_orange_dark</item>
-        <item name="colorPrimaryVariant">@android:color/holo_orange_dark</item>
-        <item name="colorOnPrimary">@android:color/white</item>
-
-        <item name="colorSecondary">@android:color/holo_orange_dark</item>
-        <item name="colorSecondaryVariant">@android:color/holo_orange_dark</item>
-        <item name="colorOnSecondary">@android:color/white</item>
-
+    <style name="Theme.NewsAppMVVM" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryVariant">@color/dark_blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/sky</item>
+        <item name="colorSecondaryVariant">@color/sky</item>
+        <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:ignore="ObsoleteSdkInt" tools:targetApi="l">
-            @color/background_primary
-        </item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:windowLightStatusBar" tools:ignore="ObsoleteSdkInt" tools:targetApi="l">
-            true
-        </item>
 
     </style>
 
     <style name="ToolbarColoredBackArrow" parent="Theme.NewsAppMVVM">
-        <item name="android:textColorSecondary">@color/background_secondary</item>
+        <item name="android:textColorSecondary">@color/white</item>
     </style>
 
-    <style name="ShapeAppearanceOverlay.App.CornerSize25Percent." parent="">
+    <style name="roundedCorners" parent="">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">2%</item>
-    </style>
-
-
-    <style name="ShapeAppearanceOverlay.App.CornerSize25Percent" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50%</item>
-    </style>
-    <!--    for text view   -->
-    <style name="HeadLine1">
-        <item name="android:textSize">@dimen/text_size_24</item>
-        <item name="android:fontFamily">@font/bold</item>
-        <item name="android:lineHeight" tools:ignore="NewApi">@dimen/size_32</item>
-        <item name="android:gravity">start</item>
-        <item name="android:textColor">@color/textColorHeadLine</item>
-    </style>
-
-    <style name="HeadLine2">
-        <item name="android:textSize">@dimen/text_size_20</item>
-        <item name="android:fontFamily">@font/bold</item>
-        <item name="android:lineHeight" tools:ignore="NewApi">@dimen/size_24</item>
-        <item name="android:gravity">start</item>
-        <item name="android:textColor">@color/textColorHeadLine</item>
-    </style>
-
-    <style name="HeadLine3">
-        <item name="android:textSize">@dimen/text_size_18</item>
-        <item name="android:fontFamily">@font/bold</item>
-        <item name="android:lineHeight" tools:ignore="NewApi">@dimen/size_24</item>
-        <item name="android:gravity">start</item>
-        <item name="android:textColor">@color/textColorHeadLine</item>
-    </style>
-
-    <style name="SubTitle1">
-        <item name="android:textSize">@dimen/text_size_16</item>
-        <item name="android:fontFamily">@font/regular</item>
-        <item name="android:lineHeight" tools:ignore="NewApi">@dimen/size_24</item>
-        <item name="android:gravity">start</item>
-        <item name="android:textColor">@color/textColorSubTitle</item>
-    </style>
-
-    <style name="SubTitle2">
-        <item name="android:textSize">@dimen/text_size_14</item>
-        <item name="android:fontFamily">@font/light</item>
-        <item name="android:lineHeight" tools:ignore="NewApi">@dimen/size_24</item>
-        <item name="android:gravity">start</item>
-        <item name="android:textColor">@color/textColorSubTitle</item>
-    </style>
-
-    <style name="Caption">
-        <item name="android:textSize">@dimen/text_size_12</item>
-        <item name="android:fontFamily">@font/light</item>
-        <item name="android:lineHeight" tools:ignore="NewApi">@dimen/size_24</item>
-        <item name="android:gravity">start</item>
-        <item name="android:textColor">@color/textColorHint</item>
-    </style>
-
-    <!--    for search box  -->
-    <style name="SearchBoxStyle">
-        <item name="android:background">@drawable/shape_search_box_view</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">50dp</item>
-        <item name="android:layout_marginTop">@dimen/size_8</item>
-        <item name="android:layout_marginHorizontal">@dimen/size_8</item>
-        <item name="android:hint">@string/search</item>
-        <item name="android:textColorHint">@color/textColorHint</item>
-        <item name="android:drawableStart">@drawable/ic_search</item>
-        <item name="android:drawablePadding">@dimen/size_4</item>
-        <item name="android:inputType">text</item>
-        <item name="android:textSize">@dimen/text_size_14</item>
-        <item name="android:textColor">@color/textColorHeadLine</item>
     </style>
 
 </resources>

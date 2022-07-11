@@ -5,5 +5,5 @@ import com.bumptech.glide.Glide
 
 
 fun ImageView.loadImage(url: String) {
-    Glide.with(this).load(url).into(this)
+    Glide.with(this).load(url).placeholder(randomColor.random()).into(this)
 }

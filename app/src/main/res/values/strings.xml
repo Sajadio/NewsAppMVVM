@@ -11,7 +11,7 @@
     <string name="snackbar_label_save">Article saved</string>
     <string name="action_text">UNDO</string>
     <string name="save_label">No save article yet!</string>
-    <string name="top_headline">Top Headlines</string>
+    <string name="rec_lable">Top Headlines</string>
     <string name="theme">Theme</string>
     <string name="english">English</string>
     <string name="arabic">Arabic</string>
@@ -30,7 +30,4 @@
     <string name="noConnection">No connection</string>
     <string name="connection"></string>
     <string name="noInternet">No internet!</string>
-    <string name="explore">Explore</string>
-    <string name="notification">Notification</string>
-    <string name="search">Search ...</string>
 </resources>
