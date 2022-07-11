@@ -59,26 +59,6 @@ class NewsActivity : AppCompatActivity() {
     }
 
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.top_app_bar_home, menu)
-
-        val searchItem = menu?.findItem(R.id.searching)
-        val searchView = searchItem?.actionView as SearchView
-
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String) = false
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                if (newText.isNotEmpty())
-                    viewModel.getSearchingQuery(newText)
-                else
-                    viewModel.getSearchingQuery("sport")
-                return true
-            }
-        })
-
-        return true
-    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return item.onNavDestinationSelected(

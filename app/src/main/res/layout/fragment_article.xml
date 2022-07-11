@@ -38,7 +38,7 @@
             android:layout_marginBottom="-8dp"
             android:onClick="@{() -> viewModel.insert(items)}"
             android:src="@drawable/ic_saved_outline"
-            app:backgroundTint="@color/blue"
+            app:backgroundTint="@android:color/darker_gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
             app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +81,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@{items.dateToTimeFormat()}"
-                    android:textColor="@color/blue"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="12sp"
                     tools:text="this for testing" />
 
@@ -112,7 +112,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="@{items.dateFormat()}"
-                    android:textColor="@color/blue"
+                    android:textColor="@android:color/darker_gray"
                     android:textSize="12sp"
                     tools:text="this for testing" />
 
@@ -140,7 +140,7 @@
                 android:background="@android:color/transparent"
                 android:text="@string/read_more"
                 android:textAllCaps="false"
-                android:textColor="@color/dark_gray" />
+                android:textColor="@android:color/darker_gray" />
 
             <TextView
                 android:layout_width="match_parent"

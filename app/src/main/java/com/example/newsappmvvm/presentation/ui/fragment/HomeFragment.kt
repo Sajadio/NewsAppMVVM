@@ -19,7 +19,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
 
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var categoryAdapter: CategoryAdapter
-    override val visibilityIconToolbar = listOf(R.id.deleteAllItem)
+    override val visibilityIconToolbar = listOf(1)
 
     override fun initial() {
         initialAdapter()

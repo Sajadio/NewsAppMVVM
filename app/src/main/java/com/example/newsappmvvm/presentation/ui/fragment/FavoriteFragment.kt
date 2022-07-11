@@ -21,10 +21,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
 
     private lateinit var newsAdapter: NewsAdapter
 
-    override val visibilityIconToolbar = listOf(
-        R.id.searching,
-        R.id.favoriteFragment,
-    )
+    override val visibilityIconToolbar = listOf(1 )
 
     override fun initial() {
         binding.viewModel = viewModel
@@ -35,10 +32,6 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.deleteAllItem -> {
-                deleteAllArticles()
-                true
-            }
             else -> super.onOptionsItemSelected(item)
         }
     }

@@ -39,7 +39,7 @@
             android:visibility="invisible"
             android:text="@string/save_label"
             tools:text="@string/save_label"
-            android:textColor="@color/dark_gray"
+            android:textColor="@android:color/darker_gray"
             app:visibleView="@{viewModel.getSavedArticle.size()}"
             android:textSize="24sp"
             android:gravity="center"

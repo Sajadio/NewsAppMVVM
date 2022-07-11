@@ -42,15 +42,11 @@ abstract class BaseFragment<DB : ViewDataBinding>(@LayoutRes private val layoutI
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
-        val search = menu.findItem(R.id.searching)
         val favorite = menu.findItem(R.id.favoriteFragment)
-        val deleteAll = menu.findItem(R.id.deleteAllItem)
 
         visibilityIconToolbar.forEach {
             when (it) {
-                search.itemId -> search.isVisible = false
                 favorite.itemId -> favorite.isVisible = false
-                deleteAll.itemId -> deleteAll.isVisible = false
             }
         }
     }

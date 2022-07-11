@@ -19,9 +19,5 @@ class WebViewFragment : BaseFragment<FragmentWebViewBinding>(R.layout.fragment_w
     }
 
     override val visibilityIconToolbar: List<Int>
-        get() = listOf(
-            R.id.searching,
-            R.id.favoriteFragment,
-            R.id.deleteAllItem
-        )
+        get() = listOf(1)
 }
