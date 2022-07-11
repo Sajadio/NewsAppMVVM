@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--    background colors   -->
+    <color name="background_primary">#201E1E</color>
+    <color name="background_secondary">#222225</color>
+
+    <!--    text colors     -->
+    <color name="textColorHeadLine">#F6F7F2</color>
+    <color name="textColorSubTitle">#6F6F6F</color>
+    <color name="textColorHint">#A4A4A4</color>
+
+    <!--    icon colors     -->
+    <color name="icon_color_gray">#A4A4A4</color>
+    <color name="icon_color_orange">#FF5722</color>
+    <color name="icon_color_black">#F6F7F2</color>
+    <color name="icon_color_white">#222225</color>222225
+
+</resources>
