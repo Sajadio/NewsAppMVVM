@@ -1,4 +1,4 @@
-package com.example.newsappmvvm.ui.adapter
+package com.example.newsappmvvm.presentation.ui.adapter
 
 import com.example.newsappmvvm.data.model.domen.Article
 
