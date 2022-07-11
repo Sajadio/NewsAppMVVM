@@ -1,4 +1,4 @@
-package com.example.newsappmvvm.presentation.ui
+package com.example.newsappmvvm.ui
 
 import android.os.Bundle
 import android.view.Menu
@@ -14,8 +14,8 @@ import com.example.newsappmvvm.R
 import com.example.newsappmvvm.databinding.ActivityNewsBinding
 import com.example.newsappmvvm.data.model.db.ArticleDatabase
 import com.example.newsappmvvm.data.model.repository.Repository
-import com.example.newsappmvvm.presentation.ui.viewmodel.NewsViewModel
-import com.example.newsappmvvm.presentation.ui.viewmodel.NewsViewModelProvider
+import com.example.newsappmvvm.ui.viewmodel.NewsViewModel
+import com.example.newsappmvvm.ui.viewmodel.NewsViewModelProvider
 import com.example.newsappmvvm.utils.NetworkHelper
 
 class NewsActivity : AppCompatActivity() {
@@ -33,15 +33,9 @@ class NewsActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         connection()
-        binding.btnRetry.setOnClickListener {
-            connection()
-        }
 
-
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
-        setupActionBarWithNavController(navHostFragment.navController)
     }
+
 
     private fun initialViewModel() {
         repository = Repository(ArticleDatabase(this))
@@ -59,36 +53,20 @@ class NewsActivity : AppCompatActivity() {
     }
 
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.top_app_bar_home, menu)
-
-        val searchItem = menu?.findItem(R.id.searching)
-        val searchView = searchItem?.actionView as SearchView
-
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String) = false
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                if (newText.isNotEmpty())
-                    viewModel.getSearchingQuery(newText)
-                else
-                    viewModel.getSearchingQuery("sport")
-                return true
-            }
-        })
-
-        return true
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return item.onNavDestinationSelected(
-            findNavController(R.id.navHostFragment)
+            findNavController(R.id.fragment_host)
         ) || super.onOptionsItemSelected(item)
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
+        findNavController(R.id.fragment_host).navigateUp()
         return true
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.bottomnavigation.setupWithNavController(findNavController(R.id.fragment_host))
     }
 
     override fun onDestroy() {

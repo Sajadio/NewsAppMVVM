@@ -1,4 +1,4 @@
-package com.example.newsappmvvm.presentation.ui.viewmodel
+package com.example.newsappmvvm.ui.viewmodel
 
 import androidx.lifecycle.*
 import com.example.newsappmvvm.data.model.domen.Article
@@ -14,6 +14,7 @@ class NewsViewModel(
 
     private val _newsBreaking = MutableLiveData<NetworkStatus<News>>()
     val newsBreaking: LiveData<NetworkStatus<News>> get() = _newsBreaking
+
 
     private val _newsQuery = MutableLiveData<NetworkStatus<News>>()
     val newsQuery: LiveData<NetworkStatus<News>> get() = _newsQuery

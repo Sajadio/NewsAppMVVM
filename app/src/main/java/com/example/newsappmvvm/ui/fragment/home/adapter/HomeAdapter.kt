@@ -1,4 +1,4 @@
-package com.example.newsappmvvm.presentation.ui.adapter
+package com.example.newsappmvvm.ui.fragment.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,13 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newsappmvvm.R
 import com.example.newsappmvvm.databinding.ItemArticleBinding
 import com.example.newsappmvvm.data.model.domen.Article
+import com.example.newsappmvvm.ui.adapter.OnClickItemArticle
 import com.example.newsappmvvm.utils.DifferCallbacks
 
 
-class NewsAdapter(
+class HomeAdapter(
     private var items: List<Article>,
     private val listener: OnClickItemArticle
-) : RecyclerView.Adapter<NewsAdapter.NewsHolder>() {
+) : RecyclerView.Adapter<HomeAdapter.HomeHolder>() {
 
     fun updateData(item: List<Article>) {
         items = item
@@ -27,8 +28,8 @@ class NewsAdapter(
 
     private val differ = AsyncListDiffer(this, DifferCallbacks)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsHolder {
-        return NewsHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeHolder {
+        return HomeHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
                 R.layout.item_article, parent, false
@@ -36,11 +37,11 @@ class NewsAdapter(
         )
     }
 
-    override fun onBindViewHolder(holder: NewsHolder, position: Int) {
+    override fun onBindViewHolder(holder: HomeHolder, position: Int) {
         val article = differ.currentList[position]
         holder.binding.apply {
             items = article
-            cardArticle.setOnClickListener {
+            poster.setOnClickListener {
                 listener.clickListener(article)
             }
             executePendingBindings()
@@ -49,7 +50,6 @@ class NewsAdapter(
 
     override fun getItemCount() = differ.currentList.size
 
-    class NewsHolder(val binding: ItemArticleBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    class HomeHolder(val binding: ItemArticleBinding) : RecyclerView.ViewHolder(binding.root)
 
 }
