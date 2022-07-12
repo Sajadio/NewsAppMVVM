@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--default-->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <item name="background_bottom_nav" type="color">@android:color/black</item>
+
+
+    <!--    background colors   -->
+    <item name="main_color_background" type="color">@android:color/white</item>
+    <item name="second_color_background" type="color">#F8F8F8</item>
+
+    <!--    main colors -->
+    <item name="gray" type="color">#D4D4D4</item>
+
+    <!--    second colors   -->
+    <item name="light_black" type="color">#1C2021</item>
+
+    <!--    text colors     -->
+    <item name="title" type="color">#1C2021</item>
+    <item name="subTitle" type="color">#8D8D8D</item>
+    <item name="caption" type="color">@android:color/darker_gray</item>
+
+
+</resources>

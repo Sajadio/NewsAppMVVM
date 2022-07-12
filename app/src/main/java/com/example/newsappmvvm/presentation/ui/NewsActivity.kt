@@ -31,16 +31,6 @@ class NewsActivity : AppCompatActivity() {
         initialViewModel()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_news)
         binding.lifecycleOwner = this
-        binding.viewModel = viewModel
-        connection()
-        binding.btnRetry.setOnClickListener {
-            connection()
-        }
-
-
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
-        setupActionBarWithNavController(navHostFragment.navController)
     }
 
     private fun initialViewModel() {
@@ -67,8 +57,13 @@ class NewsActivity : AppCompatActivity() {
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
+        findNavController(R.id.navHostFragment).navigateUp()
         return true
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.bottomnavigation.setupWithNavController(binding.navHostFragment.findNavController())
     }
 
     override fun onDestroy() {

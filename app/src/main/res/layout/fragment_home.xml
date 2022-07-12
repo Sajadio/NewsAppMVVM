@@ -27,6 +27,7 @@
             android:text="@string/rec_lable"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:textColor="@color/title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

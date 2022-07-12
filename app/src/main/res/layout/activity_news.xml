@@ -5,19 +5,16 @@
 
     <data>
 
-        <variable
-            name="viewModel"
-            type="com.example.newsappmvvm.presentation.ui.viewmodel.NewsViewModel" />
-
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/main_color_background"
         tools:context=".presentation.ui.NewsActivity">
 
 
-        <fragment
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/navHostFragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
@@ -25,45 +22,19 @@
             app:defaultNavHost="true"
             app:navGraph="@navigation/nav_graph" />
 
-        <LinearLayout
-            android:id="@+id/containerConnection"
-            style="@style/Widget.MaterialComponents.Toolbar.Surface"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="invisible"
-            app:connection="@{viewModel.connection}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomnavigation"
+            android:layout_width="@dimen/width_bottom_nav"
+            android:layout_height="@dimen/height_bottom_nav"
+            android:layout_gravity="bottom|center"
+            android:background="@drawable/shape_of_bottom_nav"
+            app:itemIconTint="@color/nav_item_color_selected"
+            android:layout_margin="@dimen/size_10"
+            app:labelVisibilityMode="unlabeled"
+            android:elevation="0dp"
+            app:itemTextColor="@android:color/white"
+            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+            app:menu="@menu/bottom_bar_menu" />
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/img"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_rawRes="@raw/connection" />
-
-            <TextView
-                android:id="@+id/txtError"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:textStateConnection="@{viewModel.connection}"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:text="this is for tesing" />
-
-            <Button
-                android:id="@+id/btnRetry"
-                android:text="@string/retry"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

@@ -17,7 +17,6 @@ class CategoryFragment : BaseFragment<FragmentCategoryBinding>(R.layout.fragment
     private val args: CategoryFragmentArgs by navArgs()
 
     private lateinit var newsAdapter: NewsAdapter
-    override val visibilityIconToolbar = listOf(1 )
 
     override fun initial() {
         (activity as NewsActivity).supportActionBar?.title = args.title?.capitalize().toString()

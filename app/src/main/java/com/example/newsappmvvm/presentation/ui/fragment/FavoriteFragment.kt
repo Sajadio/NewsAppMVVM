@@ -20,9 +20,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
     OnClickItemArticle {
 
     private lateinit var newsAdapter: NewsAdapter
-
-    override val visibilityIconToolbar = listOf(1 )
-
+    
     override fun initial() {
         binding.viewModel = viewModel
         newsAdapter = NewsAdapter(emptyList(), this)

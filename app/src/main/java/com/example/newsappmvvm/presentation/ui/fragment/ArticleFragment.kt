@@ -13,7 +13,6 @@ import com.example.newsappmvvm.presentation.ui.NewsActivity
 class ArticleFragment : BaseFragment<FragmentArticleBinding>(R.layout.fragment_article) {
 
     private val args: ArticleFragmentArgs by navArgs()
-    override val visibilityIconToolbar = listOf(1)
 
     override fun initial() {
         (activity as NewsActivity).supportActionBar?.title = args.article.source?.name

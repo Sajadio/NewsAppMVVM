@@ -18,6 +18,4 @@ class WebViewFragment : BaseFragment<FragmentWebViewBinding>(R.layout.fragment_w
         }
     }
 
-    override val visibilityIconToolbar: List<Int>
-        get() = listOf(1)
 }

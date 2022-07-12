@@ -13,7 +13,6 @@ import com.example.newsappmvvm.presentation.ui.viewmodel.NewsViewModel
 abstract class BaseFragment<DB : ViewDataBinding>(@LayoutRes private val layoutId: Int) :
     Fragment() {
 
-    abstract val visibilityIconToolbar: List<Int>
     // shared viewModel
     lateinit var viewModel: NewsViewModel
     private var _binding: DB? = null
@@ -38,18 +37,6 @@ abstract class BaseFragment<DB : ViewDataBinding>(@LayoutRes private val layoutI
 
     abstract fun initial()
 
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-
-        val favorite = menu.findItem(R.id.favoriteFragment)
-
-        visibilityIconToolbar.forEach {
-            when (it) {
-                favorite.itemId -> favorite.isVisible = false
-            }
-        }
-    }
 
     override fun onDestroy() {
         super.onDestroy()
