@@ -12,6 +12,8 @@
 
     <item name="background_bottom_nav" type="color">@android:color/black</item>
 
+    <item name="btn_effect" type="color">@android:color/black</item>
+    <item name="btn_effect_pressed" type="color">#1C2021</item>
 
     <!--    background colors   -->
     <item name="main_color_background" type="color">@android:color/white</item>
@@ -20,12 +22,9 @@
     <!--    main colors -->
     <item name="gray" type="color">#D4D4D4</item>
 
-    <!--    second colors   -->
-    <item name="light_black" type="color">#1C2021</item>
-
     <!--    text colors     -->
     <item name="title" type="color">#1C2021</item>
-    <item name="subTitle" type="color">#8D8D8D</item>
+    <item name="subTitle" type="color">#727272</item>
     <item name="caption" type="color">@android:color/darker_gray</item>
 
 

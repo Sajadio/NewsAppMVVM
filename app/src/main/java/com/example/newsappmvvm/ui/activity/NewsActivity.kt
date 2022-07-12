@@ -1,7 +1,6 @@
 package com.example.newsappmvvm.ui.activity
 
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -28,6 +27,8 @@ class NewsActivity : AppCompatActivity() {
         initialViewModel()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_news)
         binding.lifecycleOwner = this
+
+        setSupportActionBar(binding.toolBar)
     }
 
     private fun initialViewModel() {
@@ -37,20 +38,12 @@ class NewsActivity : AppCompatActivity() {
     }
 
     private fun connection() {
-        networkHelper = NetworkHelper(application,this)
+        networkHelper = NetworkHelper(application, this)
         networkHelper.observe(this) {
             viewModel.connection.postValue(it)
             if (it == R.string.connection)
                 viewModel.getSearchingQuery("sport")
         }
-    }
-
-
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return item.onNavDestinationSelected(
-            findNavController(R.id.navHostFragment)
-        ) || super.onOptionsItemSelected(item)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -61,6 +54,17 @@ class NewsActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         binding.bottomnavigation.setupWithNavController(binding.navHostFragment.findNavController())
+
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.homeFragment,
+                R.id.exploreFragment,
+                R.id.notificationFragment,
+                R.id.favoriteFragment,
+            )
+        )
+        setupActionBarWithNavController(findNavController(R.id.navHostFragment), appBarConfiguration)
+
     }
 
     override fun onDestroy() {

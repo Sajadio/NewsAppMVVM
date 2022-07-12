@@ -16,116 +16,90 @@
         android:id="@+id/cardArticle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/darker_gray"
-        android:layout_margin="4dp"
-        android:checkable="true"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="4dp"
+        android:layout_margin="@dimen/size_8"
+        android:background="@color/second_color_background"
+        app:cardCornerRadius="@dimen/size_8"
+        app:cardElevation="@dimen/size_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="8dp">
-
-            <ImageView
-                android:id="@+id/img_article"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView"
-                app:layout_constraintEnd_toEndOf="@+id/imageView"
-                app:layout_constraintStart_toStartOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="@+id/imageView" />
+            android:layout_height="match_parent">
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imageView"
-                android:layout_width="105dp"
-                android:layout_height="105dp"
+                android:id="@+id/poster"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
                 android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearance="@style/roundedCorners" />
+                app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize5"
+                app:url="@{items.urlToImage}"
+                tools:src="@drawable/ic_launcher_background" />
 
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/name"
+                style="@style/Headline1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginStart="@dimen/size_8"
+                android:layout_marginTop="@dimen/size_10"
                 android:text="@{items.source.name}"
-                tools:text="this is for testing"
-                android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toTopOf="@+id/imageView" />
+                android:textColor="@android:color/holo_green_light"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/poster"
+                tools:text="CNN" />
 
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="200dp"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/description"
+                style="@style/SubTitle2"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/size_10"
+                android:layout_marginEnd="@dimen/size_16"
                 android:ellipsize="end"
-                android:maxLines="2"
-                android:text="@{items.title}"
-                tools:text="this for testing"
-                android:textSize="14sp"
-                android:textStyle="bold"
+                android:lineHeight="@dimen/size_20"
+                android:maxLines="3"
+                android:text="@{items.description}"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/name"
-                app:layout_constraintTop_toBottomOf="@+id/name" />
+                app:layout_constraintTop_toBottomOf="@+id/name"
+                tools:ignore="UnusedAttribute"
+                tools:text="Fatalities were reported after explosions rocked a town in the Russian-occupied Kherson region on Monday in an attack by Ukrainian forces, Russian state media said" />
 
-            <ImageView
-                android:id="@+id/igmTime"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/timeText"
+                style="@style/Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:src="@drawable/ic_baseline_access"
-                app:layout_constraintBottom_toBottomOf="@+id/img_article"
-                app:layout_constraintStart_toStartOf="@+id/title"
-                app:layout_constraintTop_toBottomOf="@+id/title" />
-
-            <TextView
-                android:id="@+id/txttime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="4dp"
-                android:gravity="center"
+                android:drawablePadding="@dimen/size_2"
                 android:text="@{items.dateToTimeFormat()}"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/igmTime"
-                app:layout_constraintStart_toEndOf="@+id/igmTime"
-                app:layout_constraintTop_toTopOf="@+id/igmTime" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="@dimen/size_16"
+                android:layout_marginBottom="@dimen/size_8"
+                app:drawableStartCompat="@drawable/ic_baseline_access"
+                app:layout_constraintStart_toStartOf="@+id/description"
+                app:layout_constraintTop_toBottomOf="@+id/description"
+                tools:text="12:00" />
 
-            <ImageView
-                android:id="@+id/imgDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_outline_date"
-                app:layout_constraintBottom_toBottomOf="@+id/txttime"
-                app:layout_constraintStart_toEndOf="@+id/txttime"
-                app:layout_constraintTop_toTopOf="@+id/txttime" />
-
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txDate"
+                style="@style/Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="4dp"
-                android:layout_weight="1"
-                android:gravity="center"
                 android:text="@{items.dateFormat()}"
+                tools:text="Web, 2022/7"
+                android:drawablePadding="@dimen/size_2"
+                android:layout_marginStart="@dimen/size_10"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imgDate"
-                app:layout_constraintStart_toEndOf="@+id/imgDate"
-                app:layout_constraintTop_toTopOf="@+id/imgDate" />
+                app:drawableStartCompat="@drawable/ic_outline_date"
+                app:layout_constraintBottom_toBottomOf="@+id/timeText"
+                app:layout_constraintStart_toEndOf="@+id/timeText"
+                app:layout_constraintTop_toTopOf="@+id/timeText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -11,62 +11,38 @@
 
     </data>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginTop="8dp">
+        android:layout_height="match_parent">
 
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title"
-            android:layout_width="0dp"
+            android:textSize="@dimen/text_size_20"
+            android:fontFamily="@font/heebo_semi_bold"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/rec_lable"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="@color/title"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/size_8"
+            android:gravity="start"
+            android:textColor="@color/subTitle"
+            android:text="@string/headline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title"
-            tools:listitem="@layout/item_category" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recVertical"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/size_16"
             android:orientation="vertical"
             app:adapter="@{viewModel.newsQuery.data().articles}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recHorizontal"
+            app:layout_constraintTop_toBottomOf="@+id/title"
             tools:listitem="@layout/item_article" />
-
-        <ProgressBar
-            android:id="@+id/progressBar4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:loading="@{viewModel.newsQuery}" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

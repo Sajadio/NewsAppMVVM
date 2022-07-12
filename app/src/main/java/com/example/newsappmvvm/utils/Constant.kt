@@ -18,14 +18,5 @@ val categories = mutableListOf(
 
 val randomColor = intArrayOf(1)
 
-val categoryImg = intArrayOf(
-    R.drawable.general,
-    R.drawable.business,
-    R.drawable.entertainment,
-    R.drawable.healthcare,
-    R.drawable.atom,
-    R.drawable.sports,
-    R.drawable.tech
-)
 
 fun getCountry() = (Locale.getDefault().country).toLowerCase()

@@ -49,7 +49,7 @@
     <fragment
         android:id="@+id/exploreFragment"
         android:name="com.example.newsappmvvm.ui.fragment.explore.ExploreFragment"
-        android:label="ExploreFragment"
+        android:label="@string/ExploreFragment"
         tools:layout="@layout/fragment_explore">
         <action
             android:id="@+id/action_exploreFragment_to_articleFragment"
@@ -58,7 +58,7 @@
     <fragment
         android:id="@+id/notificationFragment"
         android:name="com.example.newsappmvvm.ui.fragment.notifigation.NotificationFragment"
-        android:label="NotificationFragment"
+        android:label="@string/notifications"
         tools:layout="@layout/fragment_notification">
         <action
             android:id="@+id/action_notificationFragment_to_articleFragment"
