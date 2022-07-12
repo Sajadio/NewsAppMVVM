@@ -1,4 +1,4 @@
-package com.example.newsappmvvm.presentation.ui.adapter
+package com.example.newsappmvvm.ui.fragment.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,13 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newsappmvvm.R
 import com.example.newsappmvvm.databinding.ItemArticleBinding
 import com.example.newsappmvvm.data.model.domen.Article
+import com.example.newsappmvvm.ui.adapter.OnClickItemArticle
 import com.example.newsappmvvm.utils.DifferCallbacks
 
 
-class NewsAdapter(
+class HomeAdapter(
     private var items: List<Article>,
     private val listener: OnClickItemArticle
-) : RecyclerView.Adapter<NewsAdapter.NewsHolder>() {
+) : RecyclerView.Adapter<HomeAdapter.NewsHolder>() {
 
     fun updateData(item: List<Article>) {
         items = item

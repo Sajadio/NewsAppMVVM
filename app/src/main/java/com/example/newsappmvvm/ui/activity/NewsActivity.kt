@@ -1,21 +1,18 @@
-package com.example.newsappmvvm.presentation.ui
+package com.example.newsappmvvm.ui.activity
 
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
 import com.example.newsappmvvm.R
 import com.example.newsappmvvm.databinding.ActivityNewsBinding
 import com.example.newsappmvvm.data.model.db.ArticleDatabase
 import com.example.newsappmvvm.data.model.repository.Repository
-import com.example.newsappmvvm.presentation.ui.viewmodel.NewsViewModel
-import com.example.newsappmvvm.presentation.ui.viewmodel.NewsViewModelProvider
+import com.example.newsappmvvm.ui.viewmodel.NewsViewModel
+import com.example.newsappmvvm.ui.viewmodel.NewsViewModelProvider
 import com.example.newsappmvvm.utils.NetworkHelper
 
 class NewsActivity : AppCompatActivity() {

@@ -1,6 +1,5 @@
-package com.example.newsappmvvm.presentation.ui.viewmodel
+package com.example.newsappmvvm.ui.viewmodel
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.newsappmvvm.data.model.repository.Repository

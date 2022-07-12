@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.newsappmvvm.presentation.ui.viewmodel.NewsViewModel" />
+            type="com.example.newsappmvvm.ui.viewmodel.NewsViewModel" />
     </data>
 
 

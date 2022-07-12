@@ -1,4 +1,4 @@
-package com.example.newsappmvvm.presentation.ui.fragment
+package com.example.newsappmvvm.ui.fragment.article
 
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -7,12 +7,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.newsappmvvm.R
 import com.example.newsappmvvm.databinding.FragmentArticleBinding
-import com.example.newsappmvvm.presentation.ui.base.BaseFragment
-import com.example.newsappmvvm.presentation.ui.NewsActivity
+import com.example.newsappmvvm.ui.base.BaseFragment
+import com.example.newsappmvvm.ui.activity.NewsActivity
 
 class ArticleFragment : BaseFragment<FragmentArticleBinding>(R.layout.fragment_article) {
 
-    private val args: ArticleFragmentArgs by navArgs()
+    private val args:ArticleFragmentArgs by navArgs()
 
     override fun initial() {
         (activity as NewsActivity).supportActionBar?.title = args.article.source?.name

@@ -1,13 +1,13 @@
-package com.example.newsappmvvm.presentation.ui.fragment
+package com.example.newsappmvvm.ui.fragment.favorite
 
 import android.os.Bundle
 import android.view.MenuItem
 import com.example.newsappmvvm.R
 import com.example.newsappmvvm.databinding.FragmentFavoriteBinding
 import com.example.newsappmvvm.data.model.domen.Article
-import com.example.newsappmvvm.presentation.ui.adapter.NewsAdapter
-import com.example.newsappmvvm.presentation.ui.adapter.OnClickItemArticle
-import com.example.newsappmvvm.presentation.ui.base.BaseFragment
+import com.example.newsappmvvm.ui.fragment.home.adapter.HomeAdapter
+import com.example.newsappmvvm.ui.adapter.OnClickItemArticle
+import com.example.newsappmvvm.ui.base.BaseFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -19,11 +19,11 @@ import com.google.android.material.snackbar.Snackbar
 class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment_favorite),
     OnClickItemArticle {
 
-    private lateinit var newsAdapter: NewsAdapter
+    private lateinit var newsAdapter: HomeAdapter
     
     override fun initial() {
         binding.viewModel = viewModel
-        newsAdapter = NewsAdapter(emptyList(), this)
+        newsAdapter = HomeAdapter(emptyList(), this)
         binding.favoriteVertical.adapter = newsAdapter
         initialRecyclerSwipe()
     }

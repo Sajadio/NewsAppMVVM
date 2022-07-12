@@ -1,4 +1,4 @@
-package com.example.newsappmvvm.presentation.ui.viewmodel
+package com.example.newsappmvvm.ui.viewmodel
 
 import androidx.lifecycle.*
 import com.example.newsappmvvm.data.model.domen.Article

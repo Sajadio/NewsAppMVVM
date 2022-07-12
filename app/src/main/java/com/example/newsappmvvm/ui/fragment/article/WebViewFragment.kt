@@ -1,10 +1,10 @@
-package com.example.newsappmvvm.presentation.ui.fragment
+package com.example.newsappmvvm.ui.fragment.article
 
 import androidx.navigation.fragment.navArgs
 import com.example.newsappmvvm.R
 import com.example.newsappmvvm.databinding.FragmentWebViewBinding
-import com.example.newsappmvvm.presentation.ui.NewsActivity
-import com.example.newsappmvvm.presentation.ui.base.BaseFragment
+import com.example.newsappmvvm.ui.activity.NewsActivity
+import com.example.newsappmvvm.ui.base.BaseFragment
 
 class WebViewFragment : BaseFragment<FragmentWebViewBinding>(R.layout.fragment_web_view) {
 

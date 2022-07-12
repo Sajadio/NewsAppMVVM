@@ -1,4 +1,4 @@
-package com.example.newsappmvvm.presentation.ui.base
+package com.example.newsappmvvm.ui.base
 
 import android.os.Bundle
 import android.view.*
@@ -6,9 +6,8 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.example.newsappmvvm.R
-import com.example.newsappmvvm.presentation.ui.NewsActivity
-import com.example.newsappmvvm.presentation.ui.viewmodel.NewsViewModel
+import com.example.newsappmvvm.ui.activity.NewsActivity
+import com.example.newsappmvvm.ui.viewmodel.NewsViewModel
 
 abstract class BaseFragment<DB : ViewDataBinding>(@LayoutRes private val layoutId: Int) :
     Fragment() {
