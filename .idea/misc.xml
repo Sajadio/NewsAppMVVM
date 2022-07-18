@@ -53,6 +53,9 @@
         <entry key="..\:/Users/S-K-A/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/menu/top_app_bar_article.xml" value="0.25" />
         <entry key="..\:/Users/S-K-A/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/menu/top_app_bar_home.xml" value="0.25" />
         <entry key="..\:/Users/S-K-A/AppData/Local/Android/Sdk/caches/transforms-3/d4526e7c720869717b18c4b1afb7852d/transformed/jetified-core-3.3.0/res/drawable-v21/md_btn_shape.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable-v24/ic_baseline_delete_24.xml" value="0.131" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable-v24/shape_search_box.xml" value="0.1345" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/back.xml" value="0.188" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/border_date.xml" value="0.1265" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/border_img.xml" value="0.1265" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/explore_icon.xml" value="0.1265" />
@@ -68,11 +71,14 @@
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/ic_deleteall.xml" value="0.1265" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1265" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/ic_outline_bookmark_border.xml" value="0.1265" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/ic_outline_close_24.xml" value="0.1345" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/ic_outline_date.xml" value="0.1265" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/ic_outline_date_range_24.xml" value="0.1265" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/ic_outline_explore.xml" value="0.1265" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/ic_outline_home.xml" value="0.1265" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/ic_outline_notifications.xml" value="0.1265" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/ic_round_arrow_back.xml" value="0.131" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/ic_round_arrow_back_ios_24.xml" value="0.1345" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/ic_round_bookmark.xml" value="0.1265" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/ic_round_bookmark_border.xml" value="0.1265" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/ic_round_explore.xml" value="0.1265" />
@@ -86,16 +92,24 @@
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/shadow_txt_connection.xml" value="0.1265" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/shape_of_bottom_nav.xml" value="0.1435" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/shape_of_search_btn.xml" value="0.1435" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/drawable/tab_background_selector.xml" value="0.1405" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/font/allan.xml" value="0.25333333333333335" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/font/font.xml" value="0.2523076923076923" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/layout/activity_news.xml" value="0.22708333333333333" />
-        <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/layout/fragment_article.xml" value="0.22708333333333333" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/layout/fragment_article.xml" value="0.264" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/layout/fragment_category.xml" value="0.22708333333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/layout/fragment_explore.xml" value="0.22708333333333333" />
-        <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/layout/fragment_favorite.xml" value="0.1" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/layout/fragment_favorite.xml" value="0.22708333333333333" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/layout/fragment_notification.xml" value="0.22604166666666667" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/layout/fragment_search.xml" value="0.264" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/layout/item_article.xml" value="0.22037037037037038" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/layout/item_category.xml" value="0.1" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/layout/item_common.xml" value="0.22708333333333333" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/layout/item_favorite.xml" value="0.22708333333333333" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/layout/item_search.xml" value="0.2" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/layout/layout_load_state.xml" value="0.1703125" />
+        <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/layout/tab_title.xml" value="0.22604166666666667" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/menu/bottom_bar_menu.xml" value="0.19166666666666668" />
         <entry key="..\:/Users/sjad0/AndroidStudioProjects/NewsAppMVVM/app/src/main/res/menu/top_app_bar_home.xml" value="0.22708333333333333" />
       </map>

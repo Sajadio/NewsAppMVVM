@@ -18,7 +18,7 @@
     <dimen name="size_32">32dp</dimen>
 
 
-    <dimen name="width_bottom_nav">350dp</dimen>
+    <dimen name="width_bottom_nav">380dp</dimen>
     <dimen name="height_bottom_nav">60dp</dimen>
 
     <!--    text size   -->

@@ -1,37 +1,74 @@
 package com.example.newsappmvvm.ui.fragment.home
 
-import android.os.Bundle
 import androidx.navigation.fragment.findNavController
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.LoadState
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newsappmvvm.databinding.FragmentHomeBinding
 import com.example.newsappmvvm.ui.base.BaseFragment
 import com.example.newsappmvvm.R
-import com.example.newsappmvvm.ui.fragment.home.adapter.HomeAdapter
-import com.example.newsappmvvm.ui.adapter.OnClickItemArticle
-import com.example.newsappmvvm.data.model.domen.Article
-import com.example.newsappmvvm.ui.adapter.OnClickItemCategory
+import com.example.newsappmvvm.ui.adapter.PagingLoadStateAdapter
+import com.example.newsappmvvm.ui.fragment.favorite.FavoriteFragmentDirections
+import com.example.newsappmvvm.ui.fragment.home.adapter.BreakingNewsPagingAdapter
+import com.example.newsappmvvm.utils.observeEvent
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChangedBy
+import kotlinx.coroutines.flow.filter
 
-class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), OnClickItemArticle,
-    OnClickItemCategory {
+@ExperimentalPagingApi
+class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
-    private lateinit var newsAdapter: HomeAdapter
+    private lateinit var adapter: BreakingNewsPagingAdapter
 
-    override fun initial() {
-        initialAdapter()
-    }
+    override fun launchView() {
+        binding.apply {
+            vm = viewModel
+            adapter = BreakingNewsPagingAdapter()
 
-        private fun initialAdapter() {
-            newsAdapter = HomeAdapter(emptyList(), this)
-            binding.recVertical.adapter = newsAdapter
+            with(adapter) {
+                swipeRefresh.setOnRefreshListener { refresh() }
+
+                val layoutManager = LinearLayoutManager(context)
+                rvBreakingNews.layoutManager = layoutManager
+                rvBreakingNews.setHasFixedSize(true)
+
+                rvBreakingNews.adapter = withLoadStateHeaderAndFooter(
+                    header = PagingLoadStateAdapter(this),
+                    footer = PagingLoadStateAdapter(this)
+                )
+
+                onItemClickListener { article ->
+                    article?.let {
+                        val action = HomeFragmentDirections.actionHomeFragmentToArticleFragment(article)
+                        findNavController().navigate(action)
+                    }
+                }
+
+                with(viewModel) {
+                    launchOnLifecycleScope {
+                        newsBreaking.collectLatest {
+                            submitData(it)
+                        }
+
+                        loadStateFlow.apply {
+
+                            distinctUntilChangedBy { it.refresh }
+                                .filter { it.refresh is LoadState.NotLoading }
+                                .collect { rvBreakingNews.scrollToPosition(0) }
+
+                            collectLatest {
+                                swipeRefresh.isRefreshing = it.refresh is LoadState.Loading
+                            }
+
+                        }
+
+                    }
+                }
+
+                viewModel.clickSearchEvent.observeEvent(viewLifecycleOwner) {
+                    findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+                }
+            }
         }
-
-        override fun clickListener(article: Article) {
-            val bundle = Bundle()
-            bundle.putSerializable("article", article)
-            findNavController().navigate(R.id.action_homeFragment_to_articleFragment, bundle)
-        }
-
-    override fun clickListener(category: String) {
-        //TODO("Not yet implemented")
     }
-
 }

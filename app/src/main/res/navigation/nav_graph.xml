@@ -11,6 +11,9 @@
         android:label="@string/home"
         tools:layout="@layout/fragment_home">
         <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
             android:id="@+id/action_homeFragment_to_articleFragment"
             app:destination="@id/articleFragment" />
     </fragment>
@@ -22,17 +25,13 @@
         <action
             android:id="@+id/action_favoriteFragment_to_articleFragment"
             app:destination="@id/articleFragment" />
-        <argument
-            android:name="article"
-            app:argType="com.example.newsappmvvm.data.model.domen.Article" />
+
     </fragment>
     <fragment
         android:id="@+id/webViewFragment"
         android:name="com.example.newsappmvvm.ui.fragment.article.WebViewFragment"
         tools:layout="@layout/fragment_web_view">
-        <argument
-            android:name="article"
-            app:argType="com.example.newsappmvvm.data.model.domen.Article" />
+
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
@@ -44,7 +43,7 @@
             app:destination="@id/webViewFragment" />
         <argument
             android:name="article"
-            app:argType="com.example.newsappmvvm.data.model.domen.Article" />
+            app:argType="com.example.newsappmvvm.data.model.Article" />
     </fragment>
     <fragment
         android:id="@+id/exploreFragment"
@@ -62,6 +61,15 @@
         tools:layout="@layout/fragment_notification">
         <action
             android:id="@+id/action_notificationFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.newsappmvvm.ui.fragment.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_articleFragment"
             app:destination="@id/articleFragment" />
     </fragment>
 </navigation>

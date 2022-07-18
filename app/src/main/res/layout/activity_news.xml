@@ -13,47 +13,6 @@
         android:background="@color/main_color_background"
         tools:context=".ui.activity.NewsActivity">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/main_color_background"
-            app:elevation="0dp"
-            app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolBar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:minHeight="?attr/actionBarSize"
-                tools:ignore="SpUsage">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/userImage"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/ic_launcher_background"
-                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50" />
-
-                <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/btnSearch"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="end"
-                    android:layout_marginEnd="@dimen/size_10"
-                    android:background="@drawable/shape_of_search_btn"
-                    android:clickable="true"
-                    android:src="@drawable/ic_search"
-                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50" />
-
-            </androidx.appcompat.widget.Toolbar>
-
-        </com.google.android.material.appbar.AppBarLayout>
-
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/navHostFragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
@@ -73,7 +32,7 @@
             android:layout_width="@dimen/width_bottom_nav"
             android:layout_height="@dimen/height_bottom_nav"
             android:layout_gravity="bottom|center"
-            android:layout_margin="@dimen/size_10"
+            android:layout_margin="@dimen/size_8"
             android:background="@drawable/shape_of_bottom_nav"
             android:elevation="0dp"
             app:itemIconTint="@color/nav_item_color_selected"

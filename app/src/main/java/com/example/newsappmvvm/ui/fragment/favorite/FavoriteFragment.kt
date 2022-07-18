@@ -1,38 +1,62 @@
 package com.example.newsappmvvm.ui.fragment.favorite
 
-import android.os.Bundle
-import android.view.MenuItem
+import android.util.Log
+import androidx.navigation.fragment.findNavController
 import com.example.newsappmvvm.R
 import com.example.newsappmvvm.databinding.FragmentFavoriteBinding
-import com.example.newsappmvvm.data.model.domen.Article
-import com.example.newsappmvvm.ui.fragment.home.adapter.HomeAdapter
-import com.example.newsappmvvm.ui.adapter.OnClickItemArticle
 import com.example.newsappmvvm.ui.base.BaseFragment
-import androidx.navigation.fragment.findNavController
+import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.newsappmvvm.data.model.LocalArticle
+import com.example.newsappmvvm.ui.adapter.CommonAdapter
+import com.example.newsappmvvm.ui.fragment.search.SearchFragmentDirections
 import com.example.newsappmvvm.utils.RecyclerViewSwipe
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
+@ExperimentalPagingApi
+class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment_favorite) {
 
-class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment_favorite),
-    OnClickItemArticle {
-
-    private lateinit var newsAdapter: HomeAdapter
-    
-    override fun initial() {
-        binding.viewModel = viewModel
-        newsAdapter = HomeAdapter(emptyList(), this)
-        binding.favoriteVertical.adapter = newsAdapter
+    override fun launchView() {
+        binding.vm = viewModel
         initialRecyclerSwipe()
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            else -> super.onOptionsItemSelected(item)
+        binding.deleteAllItems.setOnClickListener {
+            deleteAllArticles()
         }
     }
+
+    private fun initialRecyclerSwipe() {
+        val adapter = CommonAdapter()
+
+        val layoutManager = LinearLayoutManager(context)
+        binding.rvFavorite.layoutManager = layoutManager
+        binding.rvFavorite.setHasFixedSize(true)
+        viewModel.getSavedArticle.observe(this){
+        adapter.updateData(it) }
+        binding.rvFavorite.adapter = adapter
+
+        adapter.onItemClickListener { localArticle ->
+            localArticle?.let {
+                val action = FavoriteFragmentDirections.actionFavoriteFragmentToArticleFragment(viewModel.mapArticle(localArticle))
+                findNavController().navigate(action)
+            }
+        }
+
+
+        val callback = object : RecyclerViewSwipe(requireContext()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                if (direction == ItemTouchHelper.LEFT) {
+                    viewModel.deleteOneItem(adapter.deleteArticle(viewHolder.layoutPosition),false)
+                    setSnackbar(adapter.deleteArticle(viewHolder.layoutPosition))
+                }
+            }
+        }
+        val itemTouchHelper = ItemTouchHelper(callback)
+        itemTouchHelper.attachToRecyclerView(binding.rvFavorite)
+    }
+
 
     private fun deleteAllArticles() {
         MaterialAlertDialogBuilder(
@@ -49,30 +73,10 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
             .show()
     }
 
-    override fun clickListener(article: Article) {
-        val bundle = Bundle()
-        bundle.putSerializable("article", article)
-        findNavController().navigate(R.id.action_favoriteFragment_to_articleFragment, bundle)
-    }
-
-    private fun initialRecyclerSwipe() {
-
-        val callback = object : RecyclerViewSwipe(requireContext()) {
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                if (direction == ItemTouchHelper.LEFT) {
-                    viewModel.deleteOneItem(newsAdapter.deleteArticle(viewHolder.adapterPosition))
-                    setSnackbar(newsAdapter.deleteArticle(viewHolder.adapterPosition))
-                }
-            }
-        }
-        val itemTouchHelper = ItemTouchHelper(callback)
-        itemTouchHelper.attachToRecyclerView(binding.favoriteVertical)
-    }
-
-    private fun setSnackbar(article: Article) {
+    private fun setSnackbar(deleteArticle: LocalArticle) {
         Snackbar.make(requireView(), R.string.snackbar_label, Snackbar.LENGTH_LONG)
             .setAction(R.string.action_text) {
-                viewModel.insert(article)
+                viewModel.deleteOneItem(deleteArticle,true)
             }
             .show()
     }

@@ -23,7 +23,7 @@ class NetworkHelper(private val application: Application, context: Context) : Li
 
     init {
         if (!hasInternetConnection())
-            postValue(R.string.noConnection)
+            postValue(R.string.save_label)
     }
 
     private fun hasInternetConnection(): Boolean {
@@ -66,16 +66,16 @@ class NetworkHelper(private val application: Application, context: Context) : Li
                     val hasInternet = DoesNetworkHaveInternet.execute(network.socketFactory)
                     withContext(Dispatchers.Main) {
                         if (hasInternet) {
-                            postValue(R.string.connection)
+                            postValue(R.string.save_label)
                         } else
-                            postValue(R.string.noInternet)
+                            postValue(R.string.save_label)
                     }
                 }
             }
         }
 
         override fun onLost(network: Network) {
-            postValue(R.string.noConnection)
+//            postValue(R.string.noConnection)
         }
     }
 }

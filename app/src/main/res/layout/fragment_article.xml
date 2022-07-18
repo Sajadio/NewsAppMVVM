@@ -7,155 +7,194 @@
 
         <variable
             name="items"
-            type="com.example.newsappmvvm.data.model.domen.Article" />
+            type="com.example.newsappmvvm.data.model.Article" />
 
         <variable
-            name="viewModel"
-            type="com.example.newsappmvvm.ui.viewmodel.NewsViewModel"/>
+            name="vm"
+            type="com.example.newsappmvvm.ui.viewmodel.NewsViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintTop_toBottomOf="@+id/app_bar_layout">
 
-        <ImageView
-            android:id="@+id/articleImg"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:fitsSystemWindows="true"
-            android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:url="@{items.urlToImage}" />
+            android:layout_height="match_parent">
 
+            <ImageView
+                android:id="@+id/poster"
+                android:layout_width="0dp"
+                android:layout_height="400dp"
+                android:contentDescription="@string/app_name"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:url="@{items.urlToImage}"
+                tools:ignore="VectorDrawableCompat" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnSave"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="-8dp"
-            android:onClick="@{() -> viewModel.insert(items)}"
-            android:src="@drawable/ic_saved_outline"
-            app:backgroundTint="@android:color/darker_gray"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:tint="#EEE" />
-
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/articleImg">
-
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/containerTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:background="@drawable/shadow_liear"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                android:weightSum="2">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_baseline_access_time_24" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@{items.dateToTimeFormat()}"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="12sp"
-                    tools:text="this for testing" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/containerTime"
-                android:layout_marginStart="16dp"
-                android:layout_toEndOf="@+id/containerTime"
-                android:background="@drawable/shadow_liear"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="8dp"
-                android:weightSum="2">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/ic_outline_date_range_24" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@{items.dateFormat()}"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="12sp"
-                    tools:text="this for testing" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <TextView
-                android:id="@+id/tx"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/containerTime"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="16dp"
-                android:paddingVertical="8dp"
-                android:text="@string/content"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btnWebView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/tx"
-                android:layout_alignBottom="@+id/tx"
-                android:layout_alignParentEnd="true"
-                android:background="@android:color/transparent"
-                android:text="@string/read_more"
-                android:textAllCaps="false"
-                android:textColor="@android:color/darker_gray" />
-
-            <TextView
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/tx"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:elevation="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@android:color/transparent"
+                    android:minHeight="?attr/actionBarSize"
+                    android:backgroundTint="@color/white"
+                    app:navigationIcon="@drawable/ic_round_arrow_back"
+                    tools:ignore="SpUsage" >
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/saveArticle"
+                        android:src="@drawable/ic_outline_bookmark_border"
+                        android:background="@android:color/transparent"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="@dimen/size_8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/authorTitle"
+                style="@style/Headline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size_8"
+                android:gravity="start"
+                android:text="@string/author"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/poster"
+                tools:ignore="MissingConstraints" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/author"
+                style="@style/SubTitle1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_4"
+                android:layout_marginTop="@dimen/size_4"
+                android:gravity="start|center"
+                android:layout_marginEnd="@dimen/size_8"
+                android:maxLines="1"
+                android:text="@{items.author}"
+                app:layout_constraintBottom_toBottomOf="@+id/authorTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/authorTitle"
+                app:layout_constraintTop_toTopOf="@+id/authorTitle"
+                tools:ignore="MissingConstraints"
+                tools:text="Jamiel Lynch" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/timeText"
+                style="@style/Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:ellipsize="end"
-                android:maxLines="6"
+                android:background="@drawable/shadow_liear"
+                android:drawablePadding="@dimen/size_6"
+                android:paddingHorizontal="@dimen/size_6"
+                android:paddingVertical="@dimen/size_4"
+                android:textColor="@android:color/holo_orange_light"
+                app:drawableStartCompat="@drawable/ic_baseline_access_time_24"
+                app:layout_constraintStart_toStartOf="@+id/authorTitle"
+                app:layout_constraintTop_toBottomOf="@+id/authorTitle"
+                app:time="@{items.publishedAt}"
+                tools:ignore="MissingConstraints"
+                tools:text="9 hours ago" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/dateText"
+                style="@style/Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size_8"
+                android:background="@drawable/shadow_liear"
+                android:drawablePadding="@dimen/size_6"
+                android:paddingHorizontal="@dimen/size_6"
+                android:paddingVertical="@dimen/size_4"
+                android:textColor="@android:color/holo_orange_light"
+                app:date="@{items.publishedAt}"
+                app:drawableStartCompat="@drawable/ic_outline_date_range_24"
+                app:layout_constraintBottom_toBottomOf="@+id/timeText"
+                app:layout_constraintStart_toEndOf="@+id/timeText"
+                app:layout_constraintTop_toTopOf="@+id/timeText"
+                tools:ignore="MissingConstraints"
+                tools:text="Wed, 9 Mar 2022" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="2dp"
+                android:layout_height="0dp"
+                android:background="@android:color/holo_orange_dark"
+                app:layout_constraintBottom_toBottomOf="@+id/description"
+                app:layout_constraintStart_toStartOf="@+id/authorTitle"
+                app:layout_constraintTop_toTopOf="@+id/description" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/description"
+                style="@style/SubTitle2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_4"
+                android:layout_marginTop="@dimen/size_16"
+                android:layout_marginEnd="@dimen/size_4"
                 android:text="@{items.description}"
-                android:textSize="16sp"
-                tools:text="this for testing" />
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view"
+                app:layout_constraintTop_toBottomOf="@+id/dateText"
+                tools:ignore="MissingConstraints"
+                tools:text="The first wife of former president Donald Trump died in an accident from “blunt impact injuries of torso,\according to a report from a medical examiner." />
 
-        </RelativeLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title"
+                style="@style/Headline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_16"
+                android:text="@string/content"
+                app:layout_constraintStart_toStartOf="@+id/description"
+                app:layout_constraintTop_toBottomOf="@+id/description"
+                tools:ignore="MissingConstraints" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/content"
+                style="@style/SubTitle2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_4"
+                android:layout_marginEnd="@dimen/size_4"
+                android:layout_marginBottom="@dimen/size_10"
+                android:text="@{items.content}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/title"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                tools:ignore="MissingConstraints"
+                tools:text="Moving Day is officially upon us at the 150th Open Championship, paving the way for a memorable round of golf as the Old Course at St. Andrews will help determine who is truly in contention entering" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 </layout>

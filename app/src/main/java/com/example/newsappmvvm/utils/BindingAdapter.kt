@@ -1,27 +1,41 @@
+@file:Suppress("ControlFlowWithEmptyBody", "UNUSED_EXPRESSION")
+
 package com.example.newsappmvvm.utils
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.View
 import android.view.View.*
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsappmvvm.R
-import com.example.newsappmvvm.data.model.domen.Article
-import com.example.newsappmvvm.ui.fragment.home.adapter.HomeAdapter
+import com.example.newsappmvvm.data.model.Article
+import com.example.newsappmvvm.data.model.LocalArticle
+import com.example.newsappmvvm.ui.adapter.CommonAdapter
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.google.android.material.imageview.ShapeableImageView
 
 
 @SuppressLint("NotifyDataSetChanged")
 @BindingAdapter(value = ["app:adapter"])
-fun RecyclerView.setAdapter(items: List<Article>?) {
+fun RecyclerView.setAdapter(items: List<LocalArticle>?) {
     this.apply {
         setHasFixedSize(true)
-        val adapter = adapter as HomeAdapter
+        val adapter = adapter as CommonAdapter
         items?.let { adapter.updateData(it) }
         adapter.notifyDataSetChanged()
     }
 }
+
+@BindingAdapter(value = ["app:uri"])
+fun ShapeableImageView.setShapeableImageView(url: String?) {
+    url?.let { this.loadImage(it) }
+}
+
 
 @BindingAdapter(value = ["app:url"])
 fun ImageView.setImage(url: String?) {
@@ -42,15 +56,16 @@ fun <T> View.loading(state: NetworkStatus<T>?) {
         is NetworkStatus.Loading -> this.visibility = VISIBLE
         is NetworkStatus.Success -> this.visibility = INVISIBLE
         is NetworkStatus.Failure -> this.visibility = INVISIBLE
+        else -> {}
     }
 }
 
 @BindingAdapter(value = ["app:connection"])
 fun View.connection(connection: Int?) {
     when (connection) {
-        R.string.connection -> this.visibility = INVISIBLE
-        R.string.noConnection -> this.visibility = VISIBLE
-        R.string.noInternet -> this.visibility = VISIBLE
+//        R.string.connection -> this.visibility = INVISIBLE
+//        R.string.noConnection -> this.visibility = VISIBLE
+//        R.string.noInternet -> this.visibility = VISIBLE
     }
 }
 
@@ -65,5 +80,31 @@ fun ImageView.setImage(img: Int?) {
     img?.let { this.setImageResource(it) }
 }
 
+@BindingAdapter(value = ["app:time"])
+fun TextView.setTime(time: String?) {
+    time?.let { this.text = time.dateToTimeFormat() }
+}
 
+@BindingAdapter(value = ["app:text"])
+fun TextView.setTexts(text: String?) {
+    text?.let { this.text = it }
+}
 
+@BindingAdapter(value = ["app:date"])
+fun TextView.setDate(date: String?) {
+    date?.let { this.text = date.dateFormat() }
+}
+
+@BindingAdapter(value = ["show"])
+fun setVisibility(view: View, value: Boolean?) {
+    value?.let {
+        view.visibility = if (value) VISIBLE else GONE
+    }
+}
+
+@BindingAdapter(value = ["app:setFocus"])
+fun setFocus(view: EditText, value: Boolean) {
+    view.requestFocus()
+    (view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+        .showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
+}

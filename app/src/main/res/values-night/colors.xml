@@ -11,7 +11,8 @@
     <color name="white">@android:color/white</color>
 
 
-    <item name="background_bottom_nav" type="color">#1C2021</item>
+    <item name="background_bottom_nav" type="color">@android:color/black</item>
+    <item name="tab_background" type="color">#1C2021</item>
 
     <item name="btn_effect" type="color">#1C2021</item>
     <item name="btn_effect_pressed" type="color">@android:color/black</item>

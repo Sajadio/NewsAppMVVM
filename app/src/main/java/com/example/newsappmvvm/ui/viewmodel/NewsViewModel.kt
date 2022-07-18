@@ -1,40 +1,85 @@
 package com.example.newsappmvvm.ui.viewmodel
 
 import androidx.lifecycle.*
-import com.example.newsappmvvm.data.model.domen.Article
-import com.example.newsappmvvm.data.model.domen.News
-import com.example.newsappmvvm.data.model.repository.Repository
-import com.example.newsappmvvm.utils.NetworkStatus
-import kotlinx.coroutines.flow.collect
+import androidx.paging.*
+import com.example.newsappmvvm.data.model.Article
+import com.example.newsappmvvm.data.model.LocalArticle
+import com.example.newsappmvvm.data.repository.RepositoryImpl
+import com.example.newsappmvvm.ui.base.BaseViewModel
+import com.example.newsappmvvm.utils.Event
+import com.example.newsappmvvm.utils.listOfCategories
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
+@ExperimentalPagingApi
 class NewsViewModel(
-    private val repository: Repository
-) : ViewModel() {
+    private val repository: RepositoryImpl,
+) : BaseViewModel() {
 
-    private val _newsBreaking = MutableLiveData<NetworkStatus<News>>()
-    val newsBreaking: LiveData<NetworkStatus<News>> get() = _newsBreaking
+    private lateinit var _newsBreaking: Flow<PagingData<Article>>
+    val newsBreaking: Flow<PagingData<Article>> get() = _newsBreaking
 
-    private val _newsQuery = MutableLiveData<NetworkStatus<News>>()
-    val newsQuery: LiveData<NetworkStatus<News>> get() = _newsQuery
+    private lateinit var _newsQuery: Flow<PagingData<Article>>
+    val newsQuery: Flow<PagingData<Article>> get() = _newsQuery
 
-    val getSavedArticle: LiveData<List<Article>> = repository.getSavedArticle()
-    val connection = MutableLiveData<Int>()
+    private lateinit var _responseCategories: Flow<PagingData<Article>>
+    val responseCategories: Flow<PagingData<Article>> get() = _responseCategories
 
-    fun getBreakingNews(category: String) {
+    private val _categories = MutableLiveData<List<Int>>()
+    val categories: LiveData<List<Int>> get() = _categories
+
+    private val _article = MutableLiveData<Article>()
+    val article: LiveData<Article> get() = _article
+
+    private val _clickSearchEvent: MutableLiveData<Event<Boolean>> = MutableLiveData()
+    val clickSearchEvent: LiveData<Event<Boolean>> = _clickSearchEvent
+
+    private val _clickBackEvent: MutableLiveData<Event<Boolean>> = MutableLiveData()
+    val clickBackEvent: LiveData<Event<Boolean>> = _clickBackEvent
+
+    val getSavedArticle: LiveData<List<LocalArticle>> = repository.fetchSavedArticles().asLiveData()
+    val reInsertItem = MutableLiveData<Event<Boolean>>()
+
+//    val connection = MutableLiveData<Int>()
+
+    init {
         viewModelScope.launch {
-            repository.getBreakingNews(category = category).collect { response ->
-                _newsBreaking.postValue(response)
-            }
+            _newsBreaking = repository.getBreakingNews().cachedIn(viewModelScope)
+        }
+        _categories.postValue(listOfCategories)
+    }
+
+
+    fun mapArticle(localArticle: LocalArticle) = Article(
+        articleId = localArticle.articleId,
+                author = localArticle.author,
+                content = localArticle.content,
+                description = localArticle.description,
+                publishedAt = localArticle.publishedAt,
+                url = localArticle.url,
+                source = localArticle.source,
+                urlToImage = localArticle.urlToImage,
+    )
+
+    fun getResponseDataByQuery(query: String) {
+        viewModelScope.launch {
+            _newsQuery = repository.getResponseDataByQuery(query).cachedIn(viewModelScope)
         }
     }
 
-    fun getSearchingQuery(query: String) {
+    fun getResponseDataByCategory(category: String) {
         viewModelScope.launch {
-            repository.getSearchingQuery(query).collect { response ->
-                _newsQuery.postValue(response)
-            }
+            _responseCategories =
+                repository.getResponseDataByCategory(category).cachedIn(viewModelScope)
         }
+    }
+
+    fun onClickSearch() {
+        _clickSearchEvent.postValue(Event(true))
+    }
+
+    fun onClickBack() {
+        _clickBackEvent.postValue(Event(true))
     }
 
     fun insert(article: Article) {
@@ -43,9 +88,10 @@ class NewsViewModel(
         }
     }
 
-    fun deleteOneItem(article: Article) {
+    fun deleteOneItem(localArticle: LocalArticle, reInsertItem: Boolean) {
         viewModelScope.launch {
-            repository.deleteOneItem(article)
+            repository.deleteOneItem(localArticle, reInsertItem)
+
         }
     }
 
@@ -56,4 +102,6 @@ class NewsViewModel(
     }
 
     fun existsItem(url: String) = repository.existsItem(url)
+
 }
+
