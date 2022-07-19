@@ -4,15 +4,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.paging.ExperimentalPagingApi
 import com.example.newsappmvvm.R
-import com.example.newsappmvvm.data.model.Article
-import com.example.newsappmvvm.data.model.LocalArticle
 import com.example.newsappmvvm.databinding.FragmentArticleBinding
 import com.example.newsappmvvm.ui.base.BaseFragment
-import com.example.newsappmvvm.utils.loadImage
-import com.example.newsappmvvm.utils.setImage
-import com.example.newsappmvvm.utils.setText
-import com.example.newsappmvvm.utils.setTexts
-import kotlinx.coroutines.flow.collectLatest
+import com.example.newsappmvvm.utils.observeEvent
+
 
 @ExperimentalPagingApi
 class ArticleFragment : BaseFragment<FragmentArticleBinding>(R.layout.fragment_article) {
@@ -28,27 +23,11 @@ class ArticleFragment : BaseFragment<FragmentArticleBinding>(R.layout.fragment_a
                 binding.toolBar.setNavigationOnClickListener {
                     findNavController().navigateUp()
                 }
-
-                binding.saveArticle.setOnClickListener {
-                    insert(args.article)
+                clickWebViewEvent.observeEvent(viewLifecycleOwner) {
+                    val action =
+                        ArticleFragmentDirections.actionArticleFragmentToWebViewFragment(it)
+                    findNavController().navigate(action)
                 }
-
-                launchOnLifecycleScope {
-                    viewModel.existsItem(args.article.url.toString()).collectLatest { exists ->
-                        if (exists) {
-                            saveArticle.isClickable = false
-                            saveArticle.setImageResource(R.drawable.ic_round_bookmark)
-                        }
-                    }
-                }
-
-
-//                binding.btnWebView.setOnClickListener {
-//                    val build = Bundle()
-//                    build.putSerializable("article", args.article)
-//                    findNavController().navigate(R.id.action_articleFragment_to_webViewFragment, build)
-//                }
-
             }
         }
     }

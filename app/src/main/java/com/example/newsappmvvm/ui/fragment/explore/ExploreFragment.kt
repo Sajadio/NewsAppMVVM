@@ -26,12 +26,13 @@ class ExploreFragment :
     private lateinit var adapter: ExplorePagingAdapter
 
     override fun launchView() {
+        binding.vm = viewModel
         setUpTabLayout()
     }
 
     private fun initialAdapter() {
         binding.apply {
-            adapter = ExplorePagingAdapter()
+            adapter = ExplorePagingAdapter(viewModel)
             with(adapter) {
 
                 val layoutManager = LinearLayoutManager(context)
@@ -47,11 +48,10 @@ class ExploreFragment :
                 with(viewModel) {
                     launchOnLifecycleScope { responseCategories.collect { submitData(it) } }
 
-                    onItemClickListener { article ->
-                        article?.let {
-                            val action = ExploreFragmentDirections.actionExploreFragmentToArticleFragment(article)
-                            findNavController().navigate(action)
-                        }
+                    clickArticleEvent.observeEvent(viewLifecycleOwner) {
+                        val action =
+                            ExploreFragmentDirections.actionExploreFragmentToArticleFragment(it)
+                        findNavController().navigate(action)
                     }
 
                     launchOnLifecycleScope {
@@ -75,14 +75,7 @@ class ExploreFragment :
     }
 
     private fun setUpTabLayout() = with(binding) {
-        Log.d("sajjadio", "setUpTabLayout: start view ")
         with(viewModel) {
-            categories.observe(viewLifecycleOwner) { data ->
-                data.forEach {
-                    tabLayout.addTab(tabLayout.newTab().setText(resources.getString(it)))
-                }
-            }
-
             tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab) {
                     getResponseDataByCategory(tab.text.toString())

@@ -8,14 +8,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsappmvvm.data.model.Article
 import com.example.newsappmvvm.databinding.ItemArticleBinding
-import com.example.newsappmvvm.ui.adapter.OnClickItemArticle
+import com.example.newsappmvvm.ui.adapter.OnItemClickListener
 
-class BreakingNewsPagingAdapter: PagingDataAdapter<Article, BreakingNewsPagingAdapter.ArticleHolder>(CharacterComparator) {
-
-    private var onItemClickListener: ((Article?) -> Unit)? = null
-    fun onItemClickListener(listener: (Article?) -> Unit) {
-        onItemClickListener = listener
-    }
+class BreakingNewsPagingAdapter
+    (
+    private val clickListener: OnItemClickListener
+    ) : PagingDataAdapter<Article, BreakingNewsPagingAdapter.ArticleHolder>(CharacterComparator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ArticleHolder(
@@ -35,9 +33,7 @@ class BreakingNewsPagingAdapter: PagingDataAdapter<Article, BreakingNewsPagingAd
         fun bind(item: Article) = apply {
             binding.apply {
                 items = item
-                root.setOnClickListener{
-                    onItemClickListener?.let { it(item) }
-                }
+                listener = clickListener
                 executePendingBindings()
             }
         }

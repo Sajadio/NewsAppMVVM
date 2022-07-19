@@ -10,6 +10,11 @@
             name="items"
             type="com.example.newsappmvvm.data.model.Article" />
 
+        <variable
+            name="listener"
+            type="com.example.newsappmvvm.ui.adapter.OnItemClickListener" />
+
+
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -20,6 +25,7 @@
         android:background="@color/white"
         android:checkable="true"
         android:clickable="true"
+        android:onClick="@{() -> listener.onClickItemArticle(items)}"
         android:focusable="true"
         app:cardCornerRadius="@dimen/size_6"
         app:cardElevation="@dimen/size_4"

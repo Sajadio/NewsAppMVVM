@@ -10,7 +10,9 @@ import com.example.newsappmvvm.R
 import com.example.newsappmvvm.data.model.LocalArticle
 import com.example.newsappmvvm.databinding.ItemFavoriteBinding
 
-class CommonAdapter : RecyclerView.Adapter<CommonAdapter.CommonHolder>() {
+class CommonAdapter(
+    private val clickListener: OnItemClickListener,
+) : RecyclerView.Adapter<CommonAdapter.CommonHolder>() {
 
     private var onItemClickListener: ((LocalArticle?) -> Unit)? = null
     fun onItemClickListener(listener: (LocalArticle?) -> Unit) {
@@ -40,16 +42,15 @@ class CommonAdapter : RecyclerView.Adapter<CommonAdapter.CommonHolder>() {
         val article = differ.currentList[position]
         holder.binding.apply {
             items = article
-            root.setOnClickListener {
-                onItemClickListener?.let { it(article) }
-            }
+            listener = clickListener
             executePendingBindings()
         }
     }
 
     override fun getItemCount() = differ.currentList.size
 
-    inner class CommonHolder(val binding: ItemFavoriteBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class CommonHolder(val binding: ItemFavoriteBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     object DifferCallbacks : DiffUtil.ItemCallback<LocalArticle>() {
         override fun areItemsTheSame(oldItem: LocalArticle, newItem: LocalArticle) =

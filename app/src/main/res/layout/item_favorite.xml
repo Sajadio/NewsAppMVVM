@@ -10,6 +10,10 @@
             name="items"
             type="com.example.newsappmvvm.data.model.LocalArticle" />
 
+        <variable
+            name="listener"
+            type="com.example.newsappmvvm.ui.adapter.OnItemClickListener" />
+
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -19,6 +23,7 @@
         android:layout_margin="@dimen/size_4"
         android:background="@color/white"
         android:checkable="true"
+        android:onClick="@{() -> listener.onClickItemLocalMapArticle(items)}"
         android:clickable="true"
         android:focusable="true"
         app:cardCornerRadius="@dimen/size_6"

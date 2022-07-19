@@ -32,6 +32,10 @@
         android:name="com.example.newsappmvvm.ui.fragment.article.WebViewFragment"
         tools:layout="@layout/fragment_web_view">
 
+        <argument
+            android:name="article"
+            app:argType="com.example.newsappmvvm.data.model.Article" />
+
     </fragment>
     <fragment
         android:id="@+id/articleFragment"

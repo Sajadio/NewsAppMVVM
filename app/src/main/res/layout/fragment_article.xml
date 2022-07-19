@@ -64,6 +64,7 @@
                         android:src="@drawable/ic_outline_bookmark_border"
                         android:background="@android:color/transparent"
                         android:layout_gravity="end"
+                        android:onClick="@{() -> vm.onClickItemInsert(items)}"
                         android:layout_marginEnd="@dimen/size_8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -183,15 +184,30 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_4"
-                android:layout_marginEnd="@dimen/size_4"
-                android:layout_marginBottom="@dimen/size_10"
+                android:layout_marginEnd="@dimen/size_8"
+                android:ellipsize="end"
+                android:maxLines="3"
                 android:text="@{items.content}"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/readMore"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/title"
                 app:layout_constraintTop_toBottomOf="@+id/title"
                 tools:ignore="MissingConstraints"
                 tools:text="Moving Day is officially upon us at the 150th Open Championship, paving the way for a memorable round of golf as the Old Course at St. Andrews will help determine who is truly in contention entering" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/readMore"
+                style="@style/SubTitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/read_more"
+                android:clickable="true"
+                android:onClick="@{() -> vm.onClickItemWebView(items)}"
+                android:layout_marginBottom="@dimen/size_10"
+                android:textColor="@android:color/holo_orange_dark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/content"
+                tools:ignore="MissingConstraints" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

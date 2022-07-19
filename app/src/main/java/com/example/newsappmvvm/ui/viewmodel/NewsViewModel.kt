@@ -1,10 +1,12 @@
 package com.example.newsappmvvm.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.*
 import androidx.paging.*
 import com.example.newsappmvvm.data.model.Article
 import com.example.newsappmvvm.data.model.LocalArticle
 import com.example.newsappmvvm.data.repository.RepositoryImpl
+import com.example.newsappmvvm.ui.adapter.OnItemClickListener
 import com.example.newsappmvvm.ui.base.BaseViewModel
 import com.example.newsappmvvm.utils.Event
 import com.example.newsappmvvm.utils.listOfCategories
@@ -14,7 +16,7 @@ import kotlinx.coroutines.launch
 @ExperimentalPagingApi
 class NewsViewModel(
     private val repository: RepositoryImpl,
-) : BaseViewModel() {
+) : BaseViewModel(), OnItemClickListener {
 
     private lateinit var _newsBreaking: Flow<PagingData<Article>>
     val newsBreaking: Flow<PagingData<Article>> get() = _newsBreaking
@@ -25,8 +27,7 @@ class NewsViewModel(
     private lateinit var _responseCategories: Flow<PagingData<Article>>
     val responseCategories: Flow<PagingData<Article>> get() = _responseCategories
 
-    private val _categories = MutableLiveData<List<Int>>()
-    val categories: LiveData<List<Int>> get() = _categories
+    val categories = MutableLiveData(listOfCategories)
 
     private val _article = MutableLiveData<Article>()
     val article: LiveData<Article> get() = _article
@@ -37,8 +38,12 @@ class NewsViewModel(
     private val _clickBackEvent: MutableLiveData<Event<Boolean>> = MutableLiveData()
     val clickBackEvent: LiveData<Event<Boolean>> = _clickBackEvent
 
+    val clickLocalMapperArticleEvent = MutableLiveData<Event<Article>>()
+    val clickArticleEvent = MutableLiveData<Event<Article>>()
+
+    val clickWebViewEvent = MutableLiveData<Event<Article>>()
+
     val getSavedArticle: LiveData<List<LocalArticle>> = repository.fetchSavedArticles().asLiveData()
-    val reInsertItem = MutableLiveData<Event<Boolean>>()
 
 //    val connection = MutableLiveData<Int>()
 
@@ -46,20 +51,9 @@ class NewsViewModel(
         viewModelScope.launch {
             _newsBreaking = repository.getBreakingNews().cachedIn(viewModelScope)
         }
-        _categories.postValue(listOfCategories)
+
     }
 
-
-    fun mapArticle(localArticle: LocalArticle) = Article(
-        articleId = localArticle.articleId,
-                author = localArticle.author,
-                content = localArticle.content,
-                description = localArticle.description,
-                publishedAt = localArticle.publishedAt,
-                url = localArticle.url,
-                source = localArticle.source,
-                urlToImage = localArticle.urlToImage,
-    )
 
     fun getResponseDataByQuery(query: String) {
         viewModelScope.launch {
@@ -82,12 +76,6 @@ class NewsViewModel(
         _clickBackEvent.postValue(Event(true))
     }
 
-    fun insert(article: Article) {
-        viewModelScope.launch {
-            repository.insert(article)
-        }
-    }
-
     fun deleteOneItem(localArticle: LocalArticle, reInsertItem: Boolean) {
         viewModelScope.launch {
             repository.deleteOneItem(localArticle, reInsertItem)
@@ -102,6 +90,36 @@ class NewsViewModel(
     }
 
     fun existsItem(url: String) = repository.existsItem(url)
+
+    override fun onClickItemLocalMapArticle(localArticle: LocalArticle) {
+        clickLocalMapperArticleEvent.postValue(
+            Event(Article(
+                articleId = localArticle.articleId,
+                author = localArticle.author,
+                content = localArticle.content,
+                description = localArticle.description,
+                publishedAt = localArticle.publishedAt,
+                url = localArticle.url,
+                source = localArticle.source,
+                urlToImage = localArticle.urlToImage,
+            )
+            )
+        )
+    }
+
+    override fun onClickItemArticle(article: Article) {
+        clickArticleEvent.postValue(Event(article))
+    }
+
+    override fun onClickItemWebView(article: Article) {
+        clickWebViewEvent.postValue(Event(article))
+    }
+
+    override fun onClickItemInsert(article: Article) {
+        viewModelScope.launch {
+            repository.insert(article)
+        }
+    }
 
 }
 

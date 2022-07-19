@@ -4,12 +4,12 @@ package com.example.newsappmvvm.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.View
 import android.view.View.*
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.webkit.WebView
+import android.widget.*
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsappmvvm.R
@@ -18,6 +18,8 @@ import com.example.newsappmvvm.data.model.LocalArticle
 import com.example.newsappmvvm.ui.adapter.CommonAdapter
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.imageview.ShapeableImageView
+import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.fragment_explore.view.*
 
 
 @SuppressLint("NotifyDataSetChanged")
@@ -107,4 +109,19 @@ fun setFocus(view: EditText, value: Boolean) {
     view.requestFocus()
     (view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
         .showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
+}
+
+@BindingAdapter(value = ["app:addTab"])
+fun TabLayout.setTabLayout(value: List<Int>?) {
+    value?.forEach {
+        this.tabLayout.addTab(tabLayout.newTab().setText(resources.getString(it)))
+    }
+}
+
+
+@BindingAdapter(value = ["app:loadUrl"])
+fun WebView.loadUrl(url: String?) {
+    url?.let {
+        this.loadUrl(url)
+    }
 }

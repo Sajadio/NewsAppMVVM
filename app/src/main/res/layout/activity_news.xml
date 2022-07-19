@@ -29,7 +29,7 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomnavigation"
-            android:layout_width="@dimen/width_bottom_nav"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/height_bottom_nav"
             android:layout_gravity="bottom|center"
             android:layout_margin="@dimen/size_8"

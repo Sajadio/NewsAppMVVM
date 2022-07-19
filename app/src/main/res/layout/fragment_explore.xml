@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="vm"
+            type="com.example.newsappmvvm.ui.viewmodel.NewsViewModel" />
 
     </data>
 
@@ -44,7 +47,8 @@
                 android:background="@color/main_color_background"
                 android:paddingHorizontal="@dimen/size_6"
                 android:scrollbars="horizontal"
-                android:textSize="@dimen/size_16"
+                android:textSize="@dimen/text_size_16"
+                app:addTab="@{vm.categories}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
