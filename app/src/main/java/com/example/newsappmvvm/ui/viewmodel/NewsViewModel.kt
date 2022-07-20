@@ -5,16 +5,16 @@ import androidx.paging.*
 import com.example.newsappmvvm.data.model.Article
 import com.example.newsappmvvm.data.model.LocalArticle
 import com.example.newsappmvvm.data.repository.RepositoryImpl
-import com.example.newsappmvvm.ui.base.BaseViewModel
 import com.example.newsappmvvm.utils.Event
 import com.example.newsappmvvm.utils.listOfCategories
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @ExperimentalPagingApi
-class NewsViewModel(
+class NewsViewModel (
     private val repository: RepositoryImpl,
-) : BaseViewModel() {
+) : ViewModel() {
 
     private lateinit var _newsBreaking: Flow<PagingData<Article>>
     val newsBreaking: Flow<PagingData<Article>> get() = _newsBreaking

@@ -9,13 +9,7 @@ import com.example.newsappmvvm.R
 import com.example.newsappmvvm.databinding.FragmentExploreBinding
 import com.example.newsappmvvm.ui.adapter.PagingLoadStateAdapter
 import com.example.newsappmvvm.ui.base.BaseFragment
-import com.example.newsappmvvm.ui.base.BaseViewModel
 import com.example.newsappmvvm.ui.fragment.explore.adapter.ExplorePagingAdapter
-import com.example.newsappmvvm.ui.fragment.favorite.FavoriteFragmentDirections
-import com.example.newsappmvvm.ui.fragment.home.HomeFragmentDirections
-import com.example.newsappmvvm.ui.viewmodel.NewsViewModel
-import com.example.newsappmvvm.utils.NetworkHelper
-import com.example.newsappmvvm.utils.observeEvent
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
@@ -75,7 +69,6 @@ class ExploreFragment :
     }
 
     private fun setUpTabLayout() = with(binding) {
-        Log.d("sajjadio", "setUpTabLayout: start view ")
         with(viewModel) {
             categories.observe(viewLifecycleOwner) { data ->
                 data.forEach {

@@ -1,10 +1,7 @@
 package com.example.newsappmvvm.ui.activity
 
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -12,47 +9,38 @@ import androidx.navigation.ui.*
 import androidx.paging.ExperimentalPagingApi
 import com.example.newsappmvvm.R
 import com.example.newsappmvvm.databinding.ActivityNewsBinding
-import com.example.newsappmvvm.data.local.AppDB
-import com.example.newsappmvvm.data.network.ApiProvider
-import com.example.newsappmvvm.data.repository.RepositoryImpl
-import com.example.newsappmvvm.ui.base.BaseViewModel
+import com.example.newsappmvvm.ui.NewsApp
 import com.example.newsappmvvm.ui.viewmodel.NewsViewModel
-import com.example.newsappmvvm.ui.viewmodel.NewsViewModelProvider
+import com.example.newsappmvvm.ui.viewmodel.NewsViewModelFactory
 import com.example.newsappmvvm.utils.NetworkHelper
-import com.example.newsappmvvm.utils.observe
 import com.example.newsappmvvm.utils.setVisibility
+import javax.inject.Inject
 
 @ExperimentalPagingApi
 class NewsActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var viewModelFactory: NewsViewModelFactory
 
     private lateinit var networkHelper: NetworkHelper
     private lateinit var binding: ActivityNewsBinding
 
     lateinit var viewModel: NewsViewModel
-    private lateinit var viewModelProvider: NewsViewModelProvider
-    private lateinit var repository: RepositoryImpl
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        (application as NewsApp).appComponent.inject(this)
         initialViewModel()
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_news)
         binding.lifecycleOwner = this
-
-        with(viewModel) {
-            observe(errorMessage) { msg ->
-                Toast.makeText(this@NewsActivity, msg.getContentIfHandled(), Toast.LENGTH_SHORT)
-                    .show()
-            }
-        }
 
         connection()
     }
 
     private fun initialViewModel() {
-        repository = RepositoryImpl(ApiProvider.api, AppDB(this))
-        viewModelProvider = NewsViewModelProvider(repository)
-        viewModel = ViewModelProvider(this, viewModelProvider)[NewsViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[NewsViewModel::class.java]
     }
 
     private fun connection() {

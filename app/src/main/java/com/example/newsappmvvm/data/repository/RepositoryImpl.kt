@@ -1,6 +1,5 @@
 package com.example.newsappmvvm.data.repository
 
-import android.util.Log
 import androidx.paging.*
 import com.example.newsappmvvm.data.local.AppDB
 import com.example.newsappmvvm.data.mapper.MapperArticleImpl
@@ -12,17 +11,17 @@ import com.example.newsappmvvm.data.paging.remotemediator.ArticleRemoteMediator
 import com.example.newsappmvvm.data.paging.datasource.SearchPagingSource
 import com.example.newsappmvvm.utils.ITEMS_PER_PAGE
 import com.example.newsappmvvm.utils.PREF_DISTANCE
-import com.example.newsappmvvm.utils.SafeApiCall
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
 @ExperimentalPagingApi
-class RepositoryImpl(
+class RepositoryImpl @Inject constructor(
     private val api: ApiService,
     private val db: AppDB,
-) : SafeApiCall {
+) : Repository {
 
 
-    fun getBreakingNews(): Flow<PagingData<Article>> {
+    override fun getBreakingNews(): Flow<PagingData<Article>> {
         val pagingSourceFactory = { db.getRemoteArticleDao().fetchAllItem() }
         return Pager(
             config = PagingConfig(pageSize = ITEMS_PER_PAGE,
@@ -37,7 +36,7 @@ class RepositoryImpl(
     }
 
 
-    fun getResponseDataByQuery(query: String): Flow<PagingData<Article>> {
+    override fun getResponseDataByQuery(query: String): Flow<PagingData<Article>> {
         return Pager(
             config = PagingConfig(pageSize = ITEMS_PER_PAGE,
                 prefetchDistance = PREF_DISTANCE,
@@ -46,7 +45,7 @@ class RepositoryImpl(
         ).flow
     }
 
-    fun getResponseDataByCategory(category: String): Flow<PagingData<Article>> {
+    override fun getResponseDataByCategory(category: String): Flow<PagingData<Article>> {
         return Pager(
             config = PagingConfig(pageSize = ITEMS_PER_PAGE,
                 prefetchDistance = PREF_DISTANCE,
@@ -55,22 +54,22 @@ class RepositoryImpl(
         ).flow
     }
 
-    suspend fun insert(article: Article) {
+    override suspend fun insert(article: Article) {
         val localArticle = MapperArticleImpl().map(article)
         db.getLocalArticleDao().insert(localArticle)
     }
 
-    suspend fun deleteOneItem(localArticle: LocalArticle, reInsertItem: Boolean) {
+    override suspend fun deleteOneItem(localArticle: LocalArticle, reInsertItem: Boolean) {
         if (reInsertItem)
             db.getLocalArticleDao().insert(localArticle)
         else
             db.getLocalArticleDao().deleteOneItem(localArticle)
     }
 
-    suspend fun deleteAllItem() = db.getLocalArticleDao().deleteAllItem()
+    override suspend fun deleteAllItem() = db.getLocalArticleDao().deleteAllItem()
 
-    fun fetchSavedArticles() = db.getLocalArticleDao().fetchSavedArticles()
+    override fun fetchSavedArticles() = db.getLocalArticleDao().fetchSavedArticles()
 
-    fun existsItem(url: String) = db.getLocalArticleDao().existsItem(url)
+    override fun existsItem(url: String) = db.getLocalArticleDao().existsItem(url)
 
 }
