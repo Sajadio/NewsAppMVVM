@@ -1,4 +1,4 @@
-package com.example.newsappmvvm.utils
+package com.example.newsappmvvm.utils.helper
 
 import android.content.Context
 import android.net.ConnectivityManager

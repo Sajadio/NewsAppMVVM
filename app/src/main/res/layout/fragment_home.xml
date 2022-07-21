@@ -15,8 +15,8 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
-        android:background="@color/second_color_background"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/second_color_background">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout4"
@@ -35,23 +35,35 @@
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolBar"
-                    app:title="@string/headline"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:minHeight="?attr/actionBarSize"
+                    app:title="@string/headline"
                     tools:ignore="SpUsage">
 
                     <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/btnSearch"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:layout_gravity="end"
-                        android:onClick="@{() -> vm.onClickSearch()}"
                         android:layout_marginEnd="@dimen/size_10"
                         android:background="@drawable/shape_of_search_btn"
                         android:clickable="true"
+                        android:onClick="@{() -> vm.onClickSearch()}"
                         android:src="@drawable/ic_search"
                         app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/changeTheme"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="@dimen/size_10"
+                        android:background="@android:color/transparent"
+                        android:clickable="true"
+                        android:src="@drawable/ic_outline_light_mode_24"
+                        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50" />
+
 
                 </androidx.appcompat.widget.Toolbar>
 
@@ -62,8 +74,8 @@
                 android:id="@+id/rv_breakingNews"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:orientation="vertical"
                 android:layout_marginTop="8dp"
+                android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -5,7 +5,9 @@ import androidx.paging.*
 import com.example.newsappmvvm.data.model.Article
 import com.example.newsappmvvm.data.model.LocalArticle
 import com.example.newsappmvvm.data.repository.RepositoryImpl
+import com.example.newsappmvvm.data.storage.DataStorageImp
 import com.example.newsappmvvm.ui.adapter.OnItemClickListener
+import com.example.newsappmvvm.utils.UiMode
 import com.example.newsappmvvm.utils.event.Event
 import com.example.newsappmvvm.utils.listOfCategories
 import kotlinx.coroutines.flow.Flow
@@ -14,7 +16,10 @@ import kotlinx.coroutines.launch
 @ExperimentalPagingApi
 class NewsViewModel(
     private val repository: RepositoryImpl,
+    private val dataStorage: DataStorageImp
 ) : ViewModel(), OnItemClickListener {
+
+    val selectedTheme = dataStorage.uiModeFlow.asLiveData()
 
     private lateinit var _newsBreaking: Flow<PagingData<Article>>
     val newsBreaking: Flow<PagingData<Article>> get() = _newsBreaking
@@ -36,7 +41,6 @@ class NewsViewModel(
     val clickArticleEvent = MutableLiveData<Event<Article>>()
     val clickWebViewEvent = MutableLiveData<Event<Article>>()
     val toastEvent = MutableLiveData<Event<Boolean>>()
-    val existsItemEvent = MutableLiveData<Event<Boolean>>()
 
     val getSavedArticle: LiveData<List<LocalArticle>> = repository.fetchLocalArticles().asLiveData()
 
@@ -47,6 +51,19 @@ class NewsViewModel(
 
     }
 
+    fun changeSelectedTheme(uiMode: UiMode) {
+        viewModelScope.launch {
+            when (uiMode) {
+                UiMode.LIGHT -> {
+                    dataStorage.setUIMode(uiMode)
+                }
+                UiMode.DARK -> {
+                    dataStorage.setUIMode(uiMode)
+                }
+            }
+
+        }
+    }
 
     fun getResponseDataByQuery(query: String) {
         viewModelScope.launch {

@@ -30,4 +30,6 @@
     <string name="connected">Connected</string>
     <string name="noConnection">Make sure you are connected to the internet and try again</string>
     <string name="notActive">Sorry, something wrong!</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
 </resources>

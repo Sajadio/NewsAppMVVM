@@ -20,17 +20,6 @@ import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_explore.view.*
 
 
-@SuppressLint("NotifyDataSetChanged")
-@BindingAdapter(value = ["app:adapter"])
-fun RecyclerView.setAdapter(items: List<LocalArticle>?) {
-    this.apply {
-        setHasFixedSize(true)
-        val adapter = adapter as FavoriteAdapter
-        items?.let { adapter.updateData(it) }
-        adapter.notifyDataSetChanged()
-    }
-}
-
 @BindingAdapter(value = ["app:uri"])
 fun ShapeableImageView.setShapeableImageView(url: String?) {
     url?.let { this.loadImage(it) }

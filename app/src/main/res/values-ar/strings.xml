@@ -31,4 +31,6 @@
     <string name="connected">متصل</string>
     <string name="noConnection">تأكد من أنك متصل بالإنترنت وحاول مرة أخرى</string>
     <string name="notActive">شيئا ما خاطئ</string>
+    <string name="light">نهاري</string>
+    <string name="dark">داكن</string>
 </resources>

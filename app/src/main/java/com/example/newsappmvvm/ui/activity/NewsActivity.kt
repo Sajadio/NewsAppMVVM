@@ -1,6 +1,8 @@
 package com.example.newsappmvvm.ui.activity
 
+import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -13,7 +15,8 @@ import com.example.newsappmvvm.databinding.ActivityNewsBinding
 import com.example.newsappmvvm.NewsApp
 import com.example.newsappmvvm.ui.viewmodel.NewsViewModel
 import com.example.newsappmvvm.ui.viewmodel.NewsViewModelFactory
-import com.example.newsappmvvm.utils.NetworkHelper
+import com.example.newsappmvvm.utils.helper.NetworkHelper
+import com.example.newsappmvvm.utils.helper.ThemeHelper
 import com.example.newsappmvvm.utils.setVisibility
 import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
@@ -35,6 +38,7 @@ class NewsActivity : AppCompatActivity() {
 
         (application as NewsApp).appComponent.inject(this)
         viewModel = ViewModelProvider(this, viewModelFactory)[NewsViewModel::class.java]
+        observeUiPreferences()
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_news)
         binding.lifecycleOwner = this
@@ -42,6 +46,18 @@ class NewsActivity : AppCompatActivity() {
         connection()
     }
 
+    fun checkCurrentMode() =
+        when (resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK)) {
+            Configuration.UI_MODE_NIGHT_NO -> 0
+            Configuration.UI_MODE_NIGHT_YES -> 1
+            else -> -1
+        }
+
+    private fun observeUiPreferences() {
+        viewModel.selectedTheme.observe(this) { uiMode ->
+            ThemeHelper.applyTheme(uiMode)
+        }
+    }
 
     private fun connection() {
         networkHelper.observe(this) { message ->
