@@ -39,3 +39,11 @@
 | ![4](screenshots/7.png?raw=true) | ![5](screenshots/11.png?raw=true) |
 | Favorite Dark | Details Dark | 
 | ![4](screenshots/10.png?raw=true)  | ![6](screenshots/8.png?raw=true) |
+
+## API
+<a href="https://newsapi.org/n">newsapi</a>
+
+## Contributing
+
+Please fork this repository and contribute back using <a href="https://github.com/sajadio/NewsAppMVVM/pulls">pull requests.</a><br>
+Any contributions, large or small, major features, bug fixes, additional language translations, unit/integration tests are welcomed.
