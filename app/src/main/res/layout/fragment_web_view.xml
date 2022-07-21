@@ -5,6 +5,11 @@
 
     <data>
         <variable name="url" type="String"/>
+
+        <variable
+            name="vm"
+            type="com.example.newsappmvvm.ui.viewmodel.NewsViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,14 +18,36 @@
         android:layout_marginHorizontal="8dp"
         android:layout_marginTop="8dp">
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:elevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/transparent"
+                android:minHeight="?attr/actionBarSize"
+                app:navigationIcon="@drawable/ic_round"
+                tools:ignore="SpUsage"/>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
         <WebView
             android:id="@+id/webView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
             app:loadUrl="@{url}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

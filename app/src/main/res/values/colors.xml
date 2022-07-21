@@ -29,4 +29,8 @@
     <item name="caption" type="color">@android:color/darker_gray</item>
 
 
+    <item name="red" type="color">@android:color/holo_red_light</item>
+    <item name="green" type="color">@android:color/holo_green_light</item>
+
+
 </resources>

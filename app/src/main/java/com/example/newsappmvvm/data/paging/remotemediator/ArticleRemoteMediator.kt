@@ -5,7 +5,7 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.example.newsappmvvm.data.local.AppDB
+import com.example.newsappmvvm.data.db.local.AppDB
 import com.example.newsappmvvm.data.model.PageKeys
 import com.example.newsappmvvm.data.model.Article
 import com.example.newsappmvvm.data.network.ApiService
@@ -55,8 +55,8 @@ class ArticleRemoteMediator(
 
             db.withTransaction {
                 if (loadType == LoadType.REFRESH) {
-                    articleDao.deleteAllItem()
-                    pageKeysDao.deleteAllRemoteKeys()
+                    articleDao.clearAllArticles()
+                    pageKeysDao.clearPageKeys()
                 }
 
                 val prevPage = if (currentPage == 1) null else currentPage - 1
@@ -69,8 +69,8 @@ class ArticleRemoteMediator(
                         nextPage = nextPage
                     )
                 }
-                keys?.let { pageKeysDao.insertAllPageKeys(remoteKeys = keys) }
-                response?.let { articleDao.insertItems(article = response) }
+                keys?.let { pageKeysDao.insertPageKeys(remoteKeys = keys) }
+                response?.let { articleDao.insert(article = response) }
             }
             MediatorResult.Success(endOfPaginationReached = endOfPaginationReached == true)
         } catch (exception: IOException) {
@@ -83,7 +83,7 @@ class ArticleRemoteMediator(
     private suspend fun getRemoteKeyForFirstItem(state: PagingState<Int, Article>): PageKeys? {
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()
             ?.let { article ->
-                pageKeysDao.fetchRemoteKeys(article.articleId)
+                pageKeysDao.fetchPageKeys(article.articleId)
             }
     }
 
@@ -92,7 +92,7 @@ class ArticleRemoteMediator(
     ): PageKeys? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.articleId?.let { id ->
-                pageKeysDao.fetchRemoteKeys(id)
+                pageKeysDao.fetchPageKeys(id)
             }
         }
     }
@@ -100,7 +100,7 @@ class ArticleRemoteMediator(
     private suspend fun getRemoteKeyForLastItem(state: PagingState<Int, Article>): PageKeys? {
         return state.pages.lastOrNull() { it.data.isNotEmpty() }?.data?.lastOrNull()
             ?.let { article ->
-                pageKeysDao.fetchRemoteKeys(article.articleId)
+                pageKeysDao.fetchPageKeys(article.articleId)
             }
     }
 }

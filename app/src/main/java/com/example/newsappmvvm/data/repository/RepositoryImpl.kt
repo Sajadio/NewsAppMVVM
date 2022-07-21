@@ -1,8 +1,7 @@
 package com.example.newsappmvvm.data.repository
 
-import android.util.Log
 import androidx.paging.*
-import com.example.newsappmvvm.data.local.AppDB
+import com.example.newsappmvvm.data.db.local.AppDB
 import com.example.newsappmvvm.data.mapper.MapperArticleImpl
 import com.example.newsappmvvm.data.model.Article
 import com.example.newsappmvvm.data.model.LocalArticle
@@ -12,18 +11,17 @@ import com.example.newsappmvvm.data.paging.remotemediator.ArticleRemoteMediator
 import com.example.newsappmvvm.data.paging.datasource.SearchPagingSource
 import com.example.newsappmvvm.utils.ITEMS_PER_PAGE
 import com.example.newsappmvvm.utils.PREF_DISTANCE
-import com.example.newsappmvvm.utils.SafeApiCall
 import kotlinx.coroutines.flow.Flow
 
 @ExperimentalPagingApi
 class RepositoryImpl(
     private val api: ApiService,
     private val db: AppDB,
-) : SafeApiCall {
+) {
 
 
     fun getBreakingNews(): Flow<PagingData<Article>> {
-        val pagingSourceFactory = { db.getRemoteArticleDao().fetchAllItem() }
+        val pagingSourceFactory = { db.getRemoteArticleDao().fetchArticle() }
         return Pager(
             config = PagingConfig(pageSize = ITEMS_PER_PAGE,
                 prefetchDistance = PREF_DISTANCE,
@@ -55,22 +53,22 @@ class RepositoryImpl(
         ).flow
     }
 
-    suspend fun insert(article: Article) {
+    suspend fun insertLocalArticle(article: Article): Boolean {
         val localArticle = MapperArticleImpl().map(article)
-        db.getLocalArticleDao().insert(localArticle)
+        return db.getLocalArticleDao().insertLocalArticle(localArticle) > -1
     }
 
-    suspend fun deleteOneItem(localArticle: LocalArticle, reInsertItem: Boolean) {
+    suspend fun clearArticle(localArticle: LocalArticle, reInsertItem: Boolean) {
         if (reInsertItem)
-            db.getLocalArticleDao().insert(localArticle)
+            db.getLocalArticleDao().insertLocalArticle(localArticle)
         else
-            db.getLocalArticleDao().deleteOneItem(localArticle)
+            db.getLocalArticleDao().clearArticle(localArticle)
     }
 
-    suspend fun deleteAllItem() = db.getLocalArticleDao().deleteAllItem()
+    suspend fun clearLocalArticles() = db.getLocalArticleDao().clearLocalArticles()
 
-    fun fetchSavedArticles() = db.getLocalArticleDao().fetchSavedArticles()
+    fun fetchLocalArticles() = db.getLocalArticleDao().fetchLocalArticles()
 
-    fun existsItem(url: String) = db.getLocalArticleDao().existsItem(url)
+    fun isExistsItem(url: String) = db.getLocalArticleDao().isExistsItem(url)
 
 }

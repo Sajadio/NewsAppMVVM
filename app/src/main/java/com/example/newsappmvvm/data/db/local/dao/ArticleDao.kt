@@ -1,4 +1,4 @@
-package com.example.newsappmvvm.data.local.dao
+package com.example.newsappmvvm.data.db.local.dao
 
 import androidx.paging.PagingSource
 import androidx.room.*
@@ -8,12 +8,12 @@ import com.example.newsappmvvm.data.model.Article
 interface ArticleDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertItems(article: List<Article>)
+    suspend fun insert(article: List<Article>)
 
     @Query("SELECT * FROM ARTICLE_TABLE ORDER BY publishedAt DESC")
-    fun fetchAllItem(): PagingSource<Int, Article>
+    fun fetchArticle(): PagingSource<Int, Article>
 
     @Query("DELETE FROM ARTICLE_TABLE")
-    suspend fun deleteAllItem()
+    suspend fun clearAllArticles()
 
 }

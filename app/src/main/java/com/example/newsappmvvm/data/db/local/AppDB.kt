@@ -1,14 +1,14 @@
-package com.example.newsappmvvm.data.local
+package com.example.newsappmvvm.data.db.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.newsappmvvm.data.local.convert.Convert
-import com.example.newsappmvvm.data.local.dao.ArticleDao
-import com.example.newsappmvvm.data.local.dao.LocalArticleDao
-import com.example.newsappmvvm.data.local.dao.PageKeysDao
+import com.example.newsappmvvm.data.db.convert.Convert
+import com.example.newsappmvvm.data.db.local.dao.ArticleDao
+import com.example.newsappmvvm.data.db.local.dao.LocalArticleDao
+import com.example.newsappmvvm.data.db.local.dao.PageKeysDao
 import com.example.newsappmvvm.data.model.Article
 import com.example.newsappmvvm.data.model.LocalArticle
 import com.example.newsappmvvm.data.model.PageKeys

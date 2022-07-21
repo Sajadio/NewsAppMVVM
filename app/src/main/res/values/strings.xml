@@ -4,13 +4,13 @@
     <string name="home">Home</string>
     <string name="language">Languages</string>
     <string name="read_more">read more</string>
-    <string name="long_message">Are you sure to delete all?</string>
+    <string name="message_snack_bar">Are you sure to delete all?</string>
     <string name="cancel">Cancel</string>
-    <string name="accept">Yes</string>
-    <string name="snackbar_label">Delete content..</string>
-    <string name="snackbar_label_save">Content saved</string>
+    <string name="accept">Delete</string>
+    <string name="un_favorite_content">Content deleted</string>
+    <string name="favorite_content">Content saved</string>
     <string name="action_text">UNDO</string>
-    <string name="save_label">No save content yet!</string>
+    <string name="state_favorite">No saved content yet!</string>
     <string name="headline">Top Headlines</string>
     <string name="content">Content</string>
     <string name="general">general</string>
@@ -24,9 +24,10 @@
     <string name="errorNetwork">Something wrong!</string>
     <string name="explore">Explore</string>
     <string name="notifications">Notifications</string>
-    <string name="ExploreFragment">Explore</string>
     <string name="search">Search</string>
     <string name="search_hint">Search…</string>
-    <string name="saved_article">Save article</string>
     <string name="author">Author\:</string>
+    <string name="connected">Connected</string>
+    <string name="noConnection">Make sure you are connected to the internet and try again</string>
+    <string name="notActive">Sorry, something wrong!</string>
 </resources>

@@ -15,7 +15,7 @@
         android:theme="@style/Theme.NewsAppMVVM"
         android:windowSoftInputMode="adjustPan">
         <activity
-            android:name="com.example.newsappmvvm.ui.NewsActivity"
+            android:name="com.example.newsappmvvm.ui.activity.NewsActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustNothing">
             <intent-filter>

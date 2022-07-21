@@ -63,17 +63,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 
 
     private fun initialAdapter() {
-        adapter = SearchPagingAdapter()
+        adapter = SearchPagingAdapter(viewModel)
         binding.apply {
             with(adapter) {
 
-                adapter.onItemClickListener { article ->
-                    article?.let {
-                        Log.d("sajjadio", "initialAdapter: ")
-                        val action = SearchFragmentDirections.actionSearchFragmentToArticleFragment(article)
-                        findNavController().navigate(action)
-                    }
-                }
+
                 val layoutManager = LinearLayoutManager(context)
                 rvSearching.layoutManager = layoutManager
                 rvSearching.setHasFixedSize(true)
@@ -86,8 +80,12 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 
                 with(viewModel) {
                     launchOnLifecycleScope {
-                        newsQuery.collect {
-                            submitData(it)
+                        newsQuery.collect { submitData(it) }
+
+                        clickArticleEvent.observeEvent(viewLifecycleOwner) {
+                            val action =
+                                SearchFragmentDirections.actionSearchFragmentToArticleFragment(it)
+                            findNavController().navigate(action)
                         }
 
                         loadStateFlow.apply {
@@ -99,11 +97,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
                                 .filter { it.refresh is LoadState.NotLoading }
                                 .collect { rvSearching.scrollToPosition(0) }
                         }
-
                     }
                 }
             }
         }
     }
-
 }

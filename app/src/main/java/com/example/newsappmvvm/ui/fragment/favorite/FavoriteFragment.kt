@@ -1,5 +1,6 @@
 package com.example.newsappmvvm.ui.fragment.favorite
 
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.newsappmvvm.R
 import com.example.newsappmvvm.databinding.FragmentFavoriteBinding
@@ -9,9 +10,11 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsappmvvm.data.model.LocalArticle
-import com.example.newsappmvvm.ui.adapter.CommonAdapter
+import com.example.newsappmvvm.ui.activity.NewsActivity
+import com.example.newsappmvvm.ui.fragment.favorite.adapter.FavoriteAdapter
 import com.example.newsappmvvm.utils.RecyclerViewSwipe
 import com.example.newsappmvvm.utils.observeEvent
+import com.example.newsappmvvm.utils.setToast
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
@@ -28,7 +31,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
 
     private fun initialRecyclerSwipe() = with(binding) {
         with(viewModel) {
-            val adapter = CommonAdapter(viewModel)
+            val adapter = FavoriteAdapter(viewModel)
 
             val layoutManager = LinearLayoutManager(context)
             rvFavorite.layoutManager = layoutManager
@@ -36,6 +39,8 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
             binding.rvFavorite.adapter = adapter
 
             getSavedArticle.observe(viewLifecycleOwner) {
+                deleteAllItems.isVisible = it.isNotEmpty()
+                stateFavorite.isVisible = it.isEmpty()
                 adapter.updateData(it)
             }
 
@@ -65,18 +70,19 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
             requireContext(),
             R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog
         )
-            .setMessage(resources.getString(R.string.long_message))
+            .setMessage(resources.getString(R.string.message_snack_bar))
             .setNegativeButton(resources.getString(R.string.cancel)) { dialog, _ ->
                 dialog.cancel()
             }
             .setPositiveButton(resources.getString(R.string.accept)) { _, _ ->
                 viewModel.deleteAllItem()
+                requireContext().setToast(R.string.un_favorite_content)
             }
             .show()
     }
 
     private fun setSnackbar(deleteArticle: LocalArticle) {
-        Snackbar.make(requireView(), R.string.snackbar_label, Snackbar.LENGTH_LONG)
+        Snackbar.make(requireView(), R.string.message_snack_bar, Snackbar.LENGTH_LONG)
             .setAction(R.string.action_text) {
                 viewModel.deleteOneItem(deleteArticle, true)
             }
