@@ -7,28 +7,60 @@
     <data>
 
         <variable
-            name="viewModel"
-            type="com.example.newsappmvvm.presentation.ui.viewmodel.NewsViewModel" />
+            name="vm"
+            type="com.example.newsappmvvm.ui.viewmodel.NewsViewModel" />
+
     </data>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginTop="8dp">
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/main_color_background"
+            app:elevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:minHeight="?attr/actionBarSize"
+                app:title="@string/favorite"
+                tools:ignore="SpUsage">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/deleteAllItems"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="@dimen/size_10"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
+                    android:src="@drawable/ic_baseline_delete_24"
+                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/favoriteVertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:adapter="@{viewModel.getSavedArticle}"
+            android:id="@+id/rvFavorite"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
 
         <TextView
@@ -36,17 +68,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:visibility="invisible"
-            android:text="@string/save_label"
-            tools:text="@string/save_label"
-            android:textColor="@color/dark_gray"
-            app:visibleView="@{viewModel.getSavedArticle.size()}"
-            android:textSize="24sp"
             android:gravity="center"
+            android:text="@string/save_label"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="24sp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/save_label" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,17 +1,26 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.NewsAppMVVM" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="Theme.NewsAppMVVM" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue</item>
-        <item name="colorPrimaryVariant">@color/dark_blue</item>
+        <item name="colorPrimary">@android:color/holo_orange_dark</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorPrimaryVariant">@android:color/holo_orange_dark</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/sky</item>
-        <item name="colorSecondaryVariant">@color/sky</item>
+        <item name="colorSecondary">@android:color/holo_orange_dark</item>
+        <item name="colorSecondaryVariant">@android:color/holo_orange_dark</item>
         <item name="colorOnSecondary">@color/black</item>
+
+        <item name="android:windowLightStatusBar" tools:ignore="ObsoleteSdkInt" tools:targetApi="m">
+            true
+        </item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:ignore="ObsoleteSdkInt" tools:targetApi="m">
+            @color/white
+        </item>
+
         <!-- Customize your theme here. -->
+        <item name="fontFamily">@font/heebo_medium</item>
 
     </style>
 
@@ -19,8 +28,67 @@
         <item name="android:textColorSecondary">@color/white</item>
     </style>
 
-    <style name="roundedCorners" parent="">
+    <style name="ShapeAppearanceOverlay.App.CornerSize5" parent="">
         <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">5%</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize50" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+
+    <style name="Headline1">
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:textColor">@color/title</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/heebo_bold</item>
+    </style>
+
+    <style name="SubTitle1">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColor">@color/subTitle</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SubTitle2">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColor">@color/subTitle</item>
+        <item name="fontFamily">@font/heebo_regular</item>
+    </style>
+
+    <style name="SubTitle3">
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/subTitle</item>
+    </style>
+
+    <style name="Caption">
+        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:textColor">@color/caption</item>
+        <item name="fontFamily">@font/heebo_regular</item>
+
+    </style>
+
+    <style name="Base.Widget.Material3.FloatingActionButton.Large." parent="Theme.NewsAppMVVM" >
+        <item name="backgroundTint">@color/btn_effect</item>
+        <item name="iconTint">@android:color/holo_orange_dark</item>
+        <item name="srcCompat">@drawable/ic_outline_bookmark_border</item>
+    </style>
+
+    <style name="SearchBoxStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:hint">@string/search_hint</item>
+        <item name="android:textColorHint">@color/caption</item>
+        <item name="android:drawableStart">@drawable/ic_baseline_search_24</item>
+        <item name="android:drawablePadding">@dimen/size_6</item>
+        <item name="android:paddingStart">@dimen/size_10</item>
+        <item name="fontFamily">@font/heebo_regular</item>
+        <item name="android:inputType">text</item>
+        <item name="android:layout_margin">@dimen/size_8</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/title</item>
     </style>
 
 </resources>

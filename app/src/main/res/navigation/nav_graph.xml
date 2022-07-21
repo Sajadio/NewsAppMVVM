@@ -1,61 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
-        android:label= "@string/home"
-        android:name="com.example.newsappmvvm.presentation.ui.fragment.HomeFragment">
+        android:name="com.example.newsappmvvm.ui.fragment.home.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_favoriteFragment"
-            app:destination="@id/favoriteFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_categoryFragment"
-            app:destination="@id/categoryFragment" />
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
         <action
             android:id="@+id/action_homeFragment_to_articleFragment"
             app:destination="@id/articleFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
-        android:label= "@string/favorite"
-        android:name="com.example.newsappmvvm.presentation.ui.fragment.FavoriteFragment">
+        android:name="com.example.newsappmvvm.ui.fragment.favorite.FavoriteFragment"
+        android:label="@string/favorite"
+        tools:layout="@layout/fragment_favorite">
         <action
             android:id="@+id/action_favoriteFragment_to_articleFragment"
             app:destination="@id/articleFragment" />
-        <argument
-            android:name="article"
-            app:argType="com.example.newsappmvvm.data.model.domen.Article" />
+
     </fragment>
     <fragment
         android:id="@+id/webViewFragment"
-        android:name="com.example.newsappmvvm.presentation.ui.fragment.WebViewFragment">
+        android:name="com.example.newsappmvvm.ui.fragment.article.WebViewFragment"
+        tools:layout="@layout/fragment_web_view">
+
         <argument
             android:name="article"
-            app:argType="com.example.newsappmvvm.data.model.domen.Article" />
-    </fragment>
-    <fragment
-        android:id="@+id/categoryFragment"
-        android:name="com.example.newsappmvvm.presentation.ui.fragment.CategoryFragment" >
-        <action
-            android:id="@+id/action_categoryFragment_to_articleFragment"
-            app:destination="@id/articleFragment" />
-        <argument
-            android:name="title"
-            app:argType="string"
-            app:nullable="true" />
+            app:argType="com.example.newsappmvvm.data.model.Article" />
+
     </fragment>
     <fragment
         android:id="@+id/articleFragment"
-        android:name="com.example.newsappmvvm.presentation.ui.fragment.ArticleFragment"
-        android:label="ArticleFragment">
+        android:name="com.example.newsappmvvm.ui.fragment.article.ArticleFragment"
+        android:label="ArticleFragment"
+        tools:layout="@layout/fragment_article">
         <action
             android:id="@+id/action_articleFragment_to_webViewFragment"
             app:destination="@id/webViewFragment" />
         <argument
             android:name="article"
-            app:argType="com.example.newsappmvvm.data.model.domen.Article" />
+            app:argType="com.example.newsappmvvm.data.model.Article" />
+    </fragment>
+    <fragment
+        android:id="@+id/exploreFragment"
+        android:name="com.example.newsappmvvm.ui.fragment.explore.ExploreFragment"
+        android:label="@string/ExploreFragment"
+        tools:layout="@layout/fragment_explore">
+        <action
+            android:id="@+id/action_exploreFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.example.newsappmvvm.ui.fragment.notifigation.NotificationFragment"
+        android:label="@string/notifications"
+        tools:layout="@layout/fragment_notification">
+        <action
+            android:id="@+id/action_notificationFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.newsappmvvm.ui.fragment.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_searchFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
     </fragment>
 </navigation>

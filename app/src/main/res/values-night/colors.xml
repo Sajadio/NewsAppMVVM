@@ -8,25 +8,25 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">@android:color/white</color>
+
 
     <item name="background_bottom_nav" type="color">@android:color/black</item>
-    <item name="tab_background" type="color">@android:color/black</item>
+    <item name="tab_background" type="color">#1C2021</item>
 
-    <item name="btn_effect" type="color">@android:color/black</item>
-    <item name="btn_effect_pressed" type="color">#1C2021</item>
+    <item name="btn_effect" type="color">#1C2021</item>
+    <item name="btn_effect_pressed" type="color">@android:color/black</item>
 
     <!--    background colors   -->
-    <item name="main_color_background" type="color">@android:color/white</item>
-    <item name="second_color_background" type="color">#F8F8F8</item>
+    <item name="main_color_background" type="color">@android:color/black</item>
+    <item name="second_color_background" type="color">#1C2021</item>
 
     <!--    main colors -->
     <item name="gray" type="color">#D4D4D4</item>
 
     <!--    text colors     -->
-    <item name="title" type="color">#1C2021</item>
-    <item name="subTitle" type="color">#727272</item>
+    <item name="title" type="color">#F8F8F8</item>
+    <item name="subTitle" type="color">#8D8D8D</item>
     <item name="caption" type="color">@android:color/darker_gray</item>
-
 
 </resources>

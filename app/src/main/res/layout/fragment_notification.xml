@@ -5,23 +5,17 @@
 
     <data>
 
-        <variable
-            name="vm"
-            type="com.example.newsappmvvm.ui.viewmodel.NewsViewModel" />
-
     </data>
-
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
-        android:background="@color/second_color_background"
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout4"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/second_color_background">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appBarLayout"
@@ -35,41 +29,24 @@
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolBar"
-                    app:title="@string/headline"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:minHeight="?attr/actionBarSize"
-                    tools:ignore="SpUsage">
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/btnSearch"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="end"
-                        android:onClick="@{() -> vm.onClickSearch()}"
-                        android:layout_marginEnd="@dimen/size_10"
-                        android:background="@drawable/shape_of_search_btn"
-                        android:clickable="true"
-                        android:src="@drawable/ic_search"
-                        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50" />
-
-                </androidx.appcompat.widget.Toolbar>
+                    app:title="@string/notifications"
+                    tools:ignore="SpUsage"/>
 
             </com.google.android.material.appbar.AppBarLayout>
 
-
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_breakingNews"
+                android:id="@+id/rvNotifications"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:orientation="vertical"
-                android:layout_marginTop="8dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_marginTop="@dimen/size_8"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-                tools:listitem="@layout/item_article" />
+                tools:listitem="@layout/item_common" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

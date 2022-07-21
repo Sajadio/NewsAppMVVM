@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">The Week</string>
+    <string name="favorite">المحفوظات</string>
+    <string name="home"> الرئيسية</string>
+    <string name="language">اللغة</string>
+    <string name="read_more">قرأة المزيد</string>
+    <string name="long_message">هل أنت متأكد من حذف الكل؟</string>
+    <string name="cancel">الغاء</string>
+    <string name="accept">موافق</string>
+    <string name="snackbar_label">حذف المحتوى</string>
+    <string name="snackbar_label_save">تم حفظ المحتوى</string>
+    <string name="action_text">أسترجاع</string>
+    <string name="save_label">لم يتم حفظ المحتوى بعد!</string>
+    <string name="headline">ألاخبار العاجلة</string>
+    <string name="content">المحتوى</string>
+    <string name="general">عام</string>
+    <string name="business">الاعمال</string>
+    <string name="entertainment">ترفيه</string>
+    <string name="health">الصحه</string>
+    <string name="science">علوم</string>
+    <string name="sports">رياضه</string>
+    <string name="technology">تقنيه</string>
+    <string name="retry">حاول مرة أخرى</string>
+    <string name="errorNetwork">حدث خطاء ما!</string>
+    <string name="explore">استكشف</string>
+    <string name="notifications">التنبيهات</string>
+    <string name="ExploreFragment">Explore</string>
+    <string name="search">بحث</string>
+    <string name="search_hint">بحث…</string>
+    <string name="saved_article">حفظ المحتوى</string>
+    <string name="author">المؤلف\:</string>
+</resources>
