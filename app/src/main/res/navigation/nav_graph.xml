@@ -59,15 +59,6 @@
             app:destination="@id/articleFragment" />
     </fragment>
     <fragment
-        android:id="@+id/notificationFragment"
-        android:name="com.example.newsappmvvm.ui.fragment.notifigation.NotificationFragment"
-        android:label="@string/notifications"
-        tools:layout="@layout/fragment_notification">
-        <action
-            android:id="@+id/action_notificationFragment_to_articleFragment"
-            app:destination="@id/articleFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.newsappmvvm.ui.fragment.search.SearchFragment"
         android:label="SearchFragment"

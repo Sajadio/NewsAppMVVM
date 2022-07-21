@@ -16,12 +16,6 @@
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/notificationFragment"
-        android:icon="@drawable/notifications_icon"
-        android:title="@string/notifications"
-        app:showAsAction="always" />
-
-    <item
         android:id="@+id/favoriteFragment"
         android:icon="@drawable/favorite_icon"
         android:title="@string/favorite"
