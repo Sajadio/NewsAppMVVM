@@ -1,17 +1,19 @@
 # The Week Android app
 
-This app is very simple contains the following:
-
-- MVVM
-- Retrofit
-- Coroutines
-- MVVM
-- Extension Functions
-- Room
-- Navigation Components
-- Repository Pattern
-- Flow
-- DataBinding
+## Features and Libraries that  used to build app 🛠:
+- <a href="https://developer.android.com/kotlin/coroutines">Coroutines.</a>
+- <a href="https://developer.android.com/kotlin/flow">Kotlin Flow.</a>
+- <a href="https://developer.android.com/topic/libraries/architecture/viewmodel">MVVM.</a>
+- <a href="https://developer.android.com/topic/libraries/architecture/livedata">LiveData.</a>
+- <a href="https://dagger.dev/">Dagger2.</a>
+- <a href="https://github.com/square/retrofit">Retrofit.</a>
+- <a href="https://developer.android.com/training/data-storage/room">Room.</a>
+- <a href="https://developer.android.com/guide/navigation/navigation-getting-started">Navigation Components.</a>
+- <a href="https://developer.android.com/topic/architecture">Repository Pattern.</a>
+- <a href="https://developer.android.com/topic/libraries/data-binding">Data-Binding.</a>
+- <a href="https://github.com/bumptech/glide">Glid.</a>
+- <a href="https://developer.android.com/topic/libraries/architecture/paging/v3-migration">Paging 3.</a>
+- <a href="https://developer.android.com/topic/libraries/architecture/datastore">Data Store.</a>
 
 # UI
 
