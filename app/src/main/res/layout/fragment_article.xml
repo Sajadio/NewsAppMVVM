@@ -62,9 +62,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
+                        android:padding="@dimen/size_6"
                         android:background="@drawable/shape_of_back_btn"
                         android:onClick="@{() -> vm.onClickBack()}"
-                        android:padding="@dimen/size_2"
                         android:src="@drawable/ic_round_arrow_back" />
 
                     <androidx.appcompat.widget.AppCompatImageButton

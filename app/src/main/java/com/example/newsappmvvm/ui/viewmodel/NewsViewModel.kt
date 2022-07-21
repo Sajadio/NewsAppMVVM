@@ -71,7 +71,7 @@ class NewsViewModel(
 
     fun deleteOneItem(localArticle: LocalArticle, reInsertItem: Boolean) {
         viewModelScope.launch {
-            repository.clearArticle(localArticle, reInsertItem)
+            repository.clearOneItem(localArticle, reInsertItem)
         }
     }
 

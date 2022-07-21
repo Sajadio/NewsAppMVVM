@@ -12,15 +12,16 @@ import com.example.newsappmvvm.data.paging.datasource.SearchPagingSource
 import com.example.newsappmvvm.utils.ITEMS_PER_PAGE
 import com.example.newsappmvvm.utils.PREF_DISTANCE
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
 @ExperimentalPagingApi
-class RepositoryImpl(
+class RepositoryImpl @Inject constructor(
     private val api: ApiService,
     private val db: AppDB,
-) {
+) : Repository {
 
 
-    fun getBreakingNews(): Flow<PagingData<Article>> {
+    override fun getBreakingNews(): Flow<PagingData<Article>> {
         val pagingSourceFactory = { db.getRemoteArticleDao().fetchArticle() }
         return Pager(
             config = PagingConfig(pageSize = ITEMS_PER_PAGE,
@@ -35,7 +36,7 @@ class RepositoryImpl(
     }
 
 
-    fun getResponseDataByQuery(query: String): Flow<PagingData<Article>> {
+    override fun getResponseDataByQuery(query: String): Flow<PagingData<Article>> {
         return Pager(
             config = PagingConfig(pageSize = ITEMS_PER_PAGE,
                 prefetchDistance = PREF_DISTANCE,
@@ -44,7 +45,7 @@ class RepositoryImpl(
         ).flow
     }
 
-    fun getResponseDataByCategory(category: String): Flow<PagingData<Article>> {
+    override fun getResponseDataByCategory(category: String): Flow<PagingData<Article>> {
         return Pager(
             config = PagingConfig(pageSize = ITEMS_PER_PAGE,
                 prefetchDistance = PREF_DISTANCE,
@@ -53,22 +54,22 @@ class RepositoryImpl(
         ).flow
     }
 
-    suspend fun insertLocalArticle(article: Article): Boolean {
+    override suspend fun insertLocalArticle(article: Article): Boolean {
         val localArticle = MapperArticleImpl().map(article)
         return db.getLocalArticleDao().insertLocalArticle(localArticle) > -1
     }
 
-    suspend fun clearArticle(localArticle: LocalArticle, reInsertItem: Boolean) {
+    override suspend fun clearOneItem(localArticle: LocalArticle, reInsertItem: Boolean) {
         if (reInsertItem)
             db.getLocalArticleDao().insertLocalArticle(localArticle)
         else
-            db.getLocalArticleDao().clearArticle(localArticle)
+            db.getLocalArticleDao().clearOneItem(localArticle)
     }
 
-    suspend fun clearLocalArticles() = db.getLocalArticleDao().clearLocalArticles()
+    override suspend fun clearLocalArticles() = db.getLocalArticleDao().clearLocalArticles()
 
-    fun fetchLocalArticles() = db.getLocalArticleDao().fetchLocalArticles()
+    override fun fetchLocalArticles() = db.getLocalArticleDao().fetchLocalArticles()
 
-    fun isExistsItem(url: String) = db.getLocalArticleDao().isExistsItem(url)
+    override fun isExistsItem(url: String) = db.getLocalArticleDao().isExistsItem(url)
 
 }

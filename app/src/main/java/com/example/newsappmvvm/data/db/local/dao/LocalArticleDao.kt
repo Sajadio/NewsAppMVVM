@@ -17,7 +17,7 @@ interface LocalArticleDao {
     fun isExistsItem(url: String): Flow<Boolean>
 
     @Delete
-    suspend fun clearArticle(localArticle: LocalArticle)
+    suspend fun clearOneItem(localArticle: LocalArticle)
 
     @Query("DELETE FROM LOCAL_ARTICLE_TABLE")
     suspend fun clearLocalArticles()

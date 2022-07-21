@@ -1,61 +1,47 @@
 package com.example.newsappmvvm.ui.activity
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
 import androidx.paging.ExperimentalPagingApi
 import com.example.newsappmvvm.R
 import com.example.newsappmvvm.databinding.ActivityNewsBinding
-import com.example.newsappmvvm.data.db.local.AppDB
-import com.example.newsappmvvm.data.network.ApiProvider
-import com.example.newsappmvvm.data.repository.RepositoryImpl
+import com.example.newsappmvvm.NewsApp
 import com.example.newsappmvvm.ui.viewmodel.NewsViewModel
-import com.example.newsappmvvm.ui.viewmodel.NewsViewModelProvider
+import com.example.newsappmvvm.ui.viewmodel.NewsViewModelFactory
 import com.example.newsappmvvm.utils.NetworkHelper
 import com.example.newsappmvvm.utils.setVisibility
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_news.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 @ExperimentalPagingApi
 class NewsActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var viewModelFactory: NewsViewModelFactory
+    lateinit var viewModel: NewsViewModel
 
     private lateinit var networkHelper: NetworkHelper
     private lateinit var binding: ActivityNewsBinding
     private var isActive = false
 
-    lateinit var viewModel: NewsViewModel
-    private lateinit var viewModelProvider: NewsViewModelProvider
-    private lateinit var repository: RepositoryImpl
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initialViewModel()
+
+        (application as NewsApp).appComponent.inject(this)
+        viewModel = ViewModelProvider(this, viewModelFactory)[NewsViewModel::class.java]
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_news)
         binding.lifecycleOwner = this
         networkHelper = NetworkHelper(application)
         connection()
     }
 
-    private fun initialViewModel() {
-        repository = RepositoryImpl(ApiProvider.api, AppDB(this))
-        viewModelProvider = NewsViewModelProvider(repository)
-        viewModel = ViewModelProvider(this, viewModelProvider)[NewsViewModel::class.java]
-    }
 
     private fun connection() {
         networkHelper.observe(this) { message ->
@@ -87,9 +73,9 @@ class NewsActivity : AppCompatActivity() {
         }
     }
 
-    private fun setSnackbar(message: Int, color: Int)  {
-        Snackbar.make(binding.bottomnavigation,resources.getString(message),Snackbar.LENGTH_LONG)
-            .setBackgroundTint(ContextCompat.getColor(this,color)).show()
+    private fun setSnackbar(message: Int, color: Int) {
+        Snackbar.make(binding.bottomnavigation, resources.getString(message), Snackbar.LENGTH_LONG)
+            .setBackgroundTint(ContextCompat.getColor(this, color)).show()
     }
 
     override fun onSupportNavigateUp(): Boolean {
