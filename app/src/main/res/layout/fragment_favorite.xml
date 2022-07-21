@@ -40,6 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
+                    android:visibility="gone"
                     android:layout_marginEnd="@dimen/size_10"
                     android:background="@android:color/transparent"
                     android:clickable="true"
@@ -49,7 +50,6 @@
             </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvFavorite"
@@ -64,20 +64,19 @@
 
 
         <TextView
-            android:id="@+id/save_label"
+            android:id="@+id/state_favorite"
+            style="@style/SubTitle2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:gravity="center"
-            android:text="@string/save_label"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="24sp"
-            android:visibility="invisible"
+            android:text="@string/state_favorite"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/save_label" />
+            tools:text="@string/state_favorite" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

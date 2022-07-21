@@ -52,7 +52,7 @@
     <fragment
         android:id="@+id/exploreFragment"
         android:name="com.example.newsappmvvm.ui.fragment.explore.ExploreFragment"
-        android:label="@string/ExploreFragment"
+        android:label="@string/explore"
         tools:layout="@layout/fragment_explore">
         <action
             android:id="@+id/action_exploreFragment_to_articleFragment"

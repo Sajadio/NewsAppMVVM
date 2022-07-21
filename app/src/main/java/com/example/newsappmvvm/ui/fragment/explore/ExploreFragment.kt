@@ -1,6 +1,5 @@
 package com.example.newsappmvvm.ui.fragment.explore
 
-import android.util.Log
 import androidx.navigation.fragment.findNavController
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadState
@@ -9,12 +8,7 @@ import com.example.newsappmvvm.R
 import com.example.newsappmvvm.databinding.FragmentExploreBinding
 import com.example.newsappmvvm.ui.adapter.PagingLoadStateAdapter
 import com.example.newsappmvvm.ui.base.BaseFragment
-import com.example.newsappmvvm.ui.base.BaseViewModel
 import com.example.newsappmvvm.ui.fragment.explore.adapter.ExplorePagingAdapter
-import com.example.newsappmvvm.ui.fragment.favorite.FavoriteFragmentDirections
-import com.example.newsappmvvm.ui.fragment.home.HomeFragmentDirections
-import com.example.newsappmvvm.ui.viewmodel.NewsViewModel
-import com.example.newsappmvvm.utils.NetworkHelper
 import com.example.newsappmvvm.utils.observeEvent
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.flow.distinctUntilChangedBy
@@ -46,15 +40,14 @@ class ExploreFragment :
                 )
 
                 with(viewModel) {
-                    launchOnLifecycleScope { responseCategories.collect { submitData(it) } }
-
-                    clickArticleEvent.observeEvent(viewLifecycleOwner) {
-                        val action =
-                            ExploreFragmentDirections.actionExploreFragmentToArticleFragment(it)
-                        findNavController().navigate(action)
-                    }
-
                     launchOnLifecycleScope {
+                        responseCategories.collect { submitData(it) }
+
+                        clickArticleEvent.observeEvent(viewLifecycleOwner) {
+                            val action =
+                                ExploreFragmentDirections.actionExploreFragmentToArticleFragment(it)
+                            findNavController().navigate(action)
+                        }
 
                         loadStateFlow.apply {
                             collect {
@@ -66,12 +59,9 @@ class ExploreFragment :
                                 .collect { rvExplore.scrollToPosition(0) }
                         }
                     }
-
                 }
             }
-
         }
-
     }
 
     private fun setUpTabLayout() = with(binding) {

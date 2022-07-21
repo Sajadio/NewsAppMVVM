@@ -1,24 +1,24 @@
 package com.example.newsappmvvm.utils
 
 import android.app.Activity
-import android.content.Context
 import android.icu.text.SimpleDateFormat
 import android.view.View
 import android.view.Window
-import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
+import com.example.newsappmvvm.utils.event.Event
+import com.example.newsappmvvm.utils.event.EventObserver
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import org.ocpsoft.prettytime.PrettyTime
 import java.util.*
 
@@ -46,23 +46,10 @@ fun String.dateFormat(): String? {
 fun <T> LifecycleOwner.observe(liveData: LiveData<T>?, observer: (T) -> Unit) =
     liveData?.observe(this, Observer(observer))
 
-fun <T> LiveData<Event<T>>.observeEvent(owner: LifecycleOwner, function:(T) ->Unit){
-    this.observe(owner, EventObserver{ it ->
+fun <T> LiveData<Event<T>>.observeEvent(owner: LifecycleOwner, function: (T) -> Unit) {
+    this.observe(owner, EventObserver { it ->
         function(it)
     })
-}
-
-
-fun Activity.setAsActionBar(toolbar: Toolbar, isBack: Boolean = true, title: String? = null) {
-    (this as AppCompatActivity).setSupportActionBar(toolbar)
-    toolbar.title = title
-    if (isBack) {
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setDisplayShowHomeEnabled(true)
-        toolbar.setNavigationOnClickListener {
-            onBackPressed()
-        }
-    }
 }
 
 fun Window.hideSystemUI(view: View) {

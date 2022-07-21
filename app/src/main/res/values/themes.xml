@@ -84,6 +84,7 @@
         <item name="android:drawableStart">@drawable/ic_baseline_search_24</item>
         <item name="android:drawablePadding">@dimen/size_6</item>
         <item name="android:paddingStart">@dimen/size_10</item>
+        <item name="android:paddingEnd">@dimen/size_32</item>
         <item name="fontFamily">@font/heebo_regular</item>
         <item name="android:inputType">text</item>
         <item name="android:layout_margin">@dimen/size_8</item>

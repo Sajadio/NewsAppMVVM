@@ -1,4 +1,4 @@
-package com.example.newsappmvvm.ui.adapter
+package com.example.newsappmvvm.ui.fragment.favorite.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,10 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newsappmvvm.R
 import com.example.newsappmvvm.data.model.LocalArticle
 import com.example.newsappmvvm.databinding.ItemFavoriteBinding
+import com.example.newsappmvvm.ui.adapter.OnItemClickListener
 
-class CommonAdapter(
+class FavoriteAdapter(
     private val clickListener: OnItemClickListener,
-) : RecyclerView.Adapter<CommonAdapter.CommonHolder>() {
+) : RecyclerView.Adapter<FavoriteAdapter.FavoriteHolder>() {
 
     private var onItemClickListener: ((LocalArticle?) -> Unit)? = null
     fun onItemClickListener(listener: (LocalArticle?) -> Unit) {
@@ -29,8 +30,8 @@ class CommonAdapter(
 
     private val differ = AsyncListDiffer(this, DifferCallbacks)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonHolder {
-        return CommonHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteHolder {
+        return FavoriteHolder(
             DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
                 R.layout.item_favorite, parent, false
@@ -38,7 +39,7 @@ class CommonAdapter(
         )
     }
 
-    override fun onBindViewHolder(holder: CommonHolder, position: Int) {
+    override fun onBindViewHolder(holder: FavoriteHolder, position: Int) {
         val article = differ.currentList[position]
         holder.binding.apply {
             items = article
@@ -49,7 +50,7 @@ class CommonAdapter(
 
     override fun getItemCount() = differ.currentList.size
 
-    inner class CommonHolder(val binding: ItemFavoriteBinding) :
+    inner class FavoriteHolder(val binding: ItemFavoriteBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     object DifferCallbacks : DiffUtil.ItemCallback<LocalArticle>() {

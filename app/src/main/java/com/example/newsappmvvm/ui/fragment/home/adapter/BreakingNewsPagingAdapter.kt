@@ -10,10 +10,8 @@ import com.example.newsappmvvm.data.model.Article
 import com.example.newsappmvvm.databinding.ItemArticleBinding
 import com.example.newsappmvvm.ui.adapter.OnItemClickListener
 
-class BreakingNewsPagingAdapter
-    (
-    private val clickListener: OnItemClickListener
-    ) : PagingDataAdapter<Article, BreakingNewsPagingAdapter.ArticleHolder>(CharacterComparator) {
+class BreakingNewsPagingAdapter(private val clickListener: OnItemClickListener) :
+    PagingDataAdapter<Article, BreakingNewsPagingAdapter.ArticleHolder>(CharacterComparator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ArticleHolder(

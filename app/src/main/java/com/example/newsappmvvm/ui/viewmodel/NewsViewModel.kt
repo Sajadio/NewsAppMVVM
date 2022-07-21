@@ -1,14 +1,12 @@
 package com.example.newsappmvvm.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.*
 import androidx.paging.*
 import com.example.newsappmvvm.data.model.Article
 import com.example.newsappmvvm.data.model.LocalArticle
 import com.example.newsappmvvm.data.repository.RepositoryImpl
 import com.example.newsappmvvm.ui.adapter.OnItemClickListener
-import com.example.newsappmvvm.ui.base.BaseViewModel
-import com.example.newsappmvvm.utils.Event
+import com.example.newsappmvvm.utils.event.Event
 import com.example.newsappmvvm.utils.listOfCategories
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -32,17 +30,15 @@ class NewsViewModel(
     private val _article = MutableLiveData<Article>()
     val article: LiveData<Article> get() = _article
 
-    private val _clickSearchEvent: MutableLiveData<Event<Boolean>> = MutableLiveData()
-    val clickSearchEvent: LiveData<Event<Boolean>> = _clickSearchEvent
-
-    private val _clickBackEvent: MutableLiveData<Event<Boolean>> = MutableLiveData()
-    val clickBackEvent: LiveData<Event<Boolean>> = _clickBackEvent
-
+    val clickSearchEvent: MutableLiveData<Event<Boolean>> = MutableLiveData()
+    val clickBackEvent: MutableLiveData<Event<Boolean>> = MutableLiveData()
     val clickLocalMapperArticleEvent = MutableLiveData<Event<Article>>()
     val clickArticleEvent = MutableLiveData<Event<Article>>()
-
     val clickWebViewEvent = MutableLiveData<Event<Article>>()
-    val getSavedArticle: LiveData<List<LocalArticle>> = repository.fetchSavedArticles().asLiveData()
+    val toastEvent = MutableLiveData<Event<Boolean>>()
+    val existsItemEvent = MutableLiveData<Event<Boolean>>()
+
+    val getSavedArticle: LiveData<List<LocalArticle>> = repository.fetchLocalArticles().asLiveData()
 
     init {
         viewModelScope.launch {
@@ -66,27 +62,26 @@ class NewsViewModel(
     }
 
     fun onClickSearch() {
-        _clickSearchEvent.postValue(Event(true))
+        clickSearchEvent.postValue(Event(true))
     }
 
     fun onClickBack() {
-        _clickBackEvent.postValue(Event(true))
+        clickBackEvent.postValue(Event(true))
     }
 
     fun deleteOneItem(localArticle: LocalArticle, reInsertItem: Boolean) {
         viewModelScope.launch {
-            repository.deleteOneItem(localArticle, reInsertItem)
-
+            repository.clearArticle(localArticle, reInsertItem)
         }
     }
 
     fun deleteAllItem() {
         viewModelScope.launch {
-            repository.deleteAllItem()
+            repository.clearLocalArticles()
         }
     }
 
-    fun existsItem(url: String) = repository.existsItem(url)
+    fun existsItem(url: String) = repository.isExistsItem(url)
 
     override fun onClickItemLocalMapArticle(localArticle: LocalArticle) {
         clickLocalMapperArticleEvent.postValue(
@@ -114,7 +109,7 @@ class NewsViewModel(
 
     override fun onClickItemInsert(article: Article) {
         viewModelScope.launch {
-            repository.insert(article)
+            toastEvent.postValue(Event((repository.insertLocalArticle(article))))
         }
     }
 

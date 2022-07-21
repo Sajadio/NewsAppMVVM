@@ -4,19 +4,17 @@ package com.example.newsappmvvm.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.View
 import android.view.View.*
 import android.view.inputmethod.InputMethodManager
 import android.webkit.WebView
 import android.widget.*
+import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsappmvvm.R
-import com.example.newsappmvvm.data.model.Article
 import com.example.newsappmvvm.data.model.LocalArticle
-import com.example.newsappmvvm.ui.adapter.CommonAdapter
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.example.newsappmvvm.ui.fragment.favorite.adapter.FavoriteAdapter
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_explore.view.*
@@ -27,7 +25,7 @@ import kotlinx.android.synthetic.main.fragment_explore.view.*
 fun RecyclerView.setAdapter(items: List<LocalArticle>?) {
     this.apply {
         setHasFixedSize(true)
-        val adapter = adapter as CommonAdapter
+        val adapter = adapter as FavoriteAdapter
         items?.let { adapter.updateData(it) }
         adapter.notifyDataSetChanged()
     }
@@ -50,25 +48,6 @@ fun View.visibleView(value: Int?) {
         this.visibility = VISIBLE
     else
         this.visibility = INVISIBLE
-}
-
-@BindingAdapter(value = ["app:loading"])
-fun <T> View.loading(state: NetworkStatus<T>?) {
-    when (state) {
-        is NetworkStatus.Loading -> this.visibility = VISIBLE
-        is NetworkStatus.Success -> this.visibility = INVISIBLE
-        is NetworkStatus.Failure -> this.visibility = INVISIBLE
-        else -> {}
-    }
-}
-
-@BindingAdapter(value = ["app:connection"])
-fun View.connection(connection: Int?) {
-    when (connection) {
-//        R.string.connection -> this.visibility = INVISIBLE
-//        R.string.noConnection -> this.visibility = VISIBLE
-//        R.string.noInternet -> this.visibility = VISIBLE
-    }
 }
 
 @BindingAdapter(value = ["app:textStateConnection"])
@@ -111,6 +90,7 @@ fun setFocus(view: EditText, value: Boolean) {
         .showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
 }
 
+
 @BindingAdapter(value = ["app:addTab"])
 fun TabLayout.setTabLayout(value: List<Int>?) {
     value?.forEach {
@@ -124,4 +104,8 @@ fun WebView.loadUrl(url: String?) {
     url?.let {
         this.loadUrl(url)
     }
+}
+
+fun Context.setToast(message: Int) {
+    Toast.makeText(this, resources.getString(message), Toast.LENGTH_SHORT).show()
 }

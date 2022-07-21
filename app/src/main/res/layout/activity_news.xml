@@ -7,7 +7,7 @@
 
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/main_color_background"
@@ -24,7 +24,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+            app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/nav_graph" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -39,7 +39,10 @@
             app:itemTextColor="@android:color/white"
             app:labelVisibilityMode="unlabeled"
             app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/bottom_bar_menu" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

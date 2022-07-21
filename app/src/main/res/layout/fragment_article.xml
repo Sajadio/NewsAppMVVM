@@ -32,12 +32,12 @@
                 android:contentDescription="@string/app_name"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:url="@{items.urlToImage}"
-                tools:ignore="VectorDrawableCompat" />
+                tools:ignore="VectorDrawableCompat"
+                tools:src="@drawable/ic_launcher_background" />
 
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/appBarLayout"
@@ -55,19 +55,27 @@
                     android:layout_height="?attr/actionBarSize"
                     android:background="@android:color/transparent"
                     android:minHeight="?attr/actionBarSize"
-                    android:backgroundTint="@color/white"
-                    app:navigationIcon="@drawable/ic_round_arrow_back"
-                    tools:ignore="SpUsage" >
+                    tools:ignore="SpUsage">
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/backBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:background="@drawable/shape_of_back_btn"
+                        android:onClick="@{() -> vm.onClickBack()}"
+                        android:padding="@dimen/size_2"
+                        android:src="@drawable/ic_round_arrow_back" />
 
                     <androidx.appcompat.widget.AppCompatImageButton
                         android:id="@+id/saveArticle"
-                        android:src="@drawable/ic_outline_bookmark_border"
-                        android:background="@android:color/transparent"
-                        android:layout_gravity="end"
-                        android:onClick="@{() -> vm.onClickItemInsert(items)}"
-                        android:layout_marginEnd="@dimen/size_8"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="@dimen/size_8"
+                        android:background="@android:color/transparent"
+                        android:onClick="@{() -> vm.onClickItemInsert(items)}"
+                        android:src="@drawable/ic_outline_bookmark_border" />
 
                 </androidx.appcompat.widget.Toolbar>
 
@@ -93,8 +101,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_4"
                 android:layout_marginTop="@dimen/size_4"
-                android:gravity="start|center"
                 android:layout_marginEnd="@dimen/size_8"
+                android:gravity="start|center"
                 android:maxLines="1"
                 android:text="@{items.author}"
                 app:layout_constraintBottom_toBottomOf="@+id/authorTitle"
@@ -200,10 +208,10 @@
                 style="@style/SubTitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/read_more"
+                android:layout_marginBottom="@dimen/size_10"
                 android:clickable="true"
                 android:onClick="@{() -> vm.onClickItemWebView(items)}"
-                android:layout_marginBottom="@dimen/size_10"
+                android:text="@string/read_more"
                 android:textColor="@android:color/holo_orange_dark"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/content"

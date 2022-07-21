@@ -43,13 +43,6 @@ abstract class BaseFragment<VB : ViewDataBinding>(@LayoutRes private val layoutI
         super.onCreate(savedInstanceState)
         viewModel = (activity as NewsActivity).viewModel
         launchView()
-
-        with(viewModel) {
-            observe(errorMessage) { msg ->
-                Toast.makeText(requireContext(), msg.getContentIfHandled(), Toast.LENGTH_SHORT)
-                    .show()
-            }
-        }
     }
 
     fun launchOnLifecycleScope(execute: suspend () -> Unit) {

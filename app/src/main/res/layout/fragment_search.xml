@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+
             <ImageButton
                 android:id="@+id/btnBack"
                 android:layout_width="50dp"
@@ -28,7 +29,7 @@
                 android:onClick="@{() -> vm.onClickBack()}"
                 app:layout_constraintStart_toStartOf="parent"
                 android:background="@drawable/shape_search_box"
-                android:src="@drawable/ic_round_arrow_back_ios_24"
+                android:src="@drawable/ic_round"
                 app:layout_constraintBottom_toBottomOf="@+id/searchBox"
                 app:layout_constraintTop_toTopOf="@+id/searchBox"
                 android:contentDescription="@string/app_name" />
@@ -67,7 +68,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/searchBox"
-                tools:listitem="@layout/item_common" />
+                tools:listitem="@layout/item_favorite" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

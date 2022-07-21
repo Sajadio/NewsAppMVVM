@@ -1,4 +1,4 @@
-package com.example.newsappmvvm.data.local.dao
+package com.example.newsappmvvm.data.db.local.dao
 
 import androidx.room.*
 import com.example.newsappmvvm.data.model.LocalArticle
@@ -8,18 +8,18 @@ import kotlinx.coroutines.flow.Flow
 interface LocalArticleDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(article: LocalArticle): Long
+    suspend fun insertLocalArticle(localArticle: LocalArticle): Long
 
     @Query("SELECT * FROM LOCAL_ARTICLE_TABLE")
-    fun fetchSavedArticles(): Flow<List<LocalArticle>>
+    fun fetchLocalArticles(): Flow<List<LocalArticle>>
 
     @Query("SELECT EXISTS (SELECT 1 FROM LOCAL_ARTICLE_TABLE WHERE url = :url)")
-    fun existsItem(url: String): Flow<Boolean>
+    fun isExistsItem(url: String): Flow<Boolean>
 
     @Delete
-    suspend fun deleteOneItem(article: LocalArticle)
+    suspend fun clearArticle(localArticle: LocalArticle)
 
     @Query("DELETE FROM LOCAL_ARTICLE_TABLE")
-    suspend fun deleteAllItem()
+    suspend fun clearLocalArticles()
 
 }

@@ -7,6 +7,8 @@ import com.example.newsappmvvm.R
 import com.example.newsappmvvm.databinding.FragmentArticleBinding
 import com.example.newsappmvvm.ui.base.BaseFragment
 import com.example.newsappmvvm.utils.observeEvent
+import com.example.newsappmvvm.utils.setToast
+import kotlinx.coroutines.flow.collectLatest
 
 
 @ExperimentalPagingApi
@@ -20,13 +22,29 @@ class ArticleFragment : BaseFragment<FragmentArticleBinding>(R.layout.fragment_a
             with(viewModel) {
                 vm = viewModel
                 items = args.article
-                binding.toolBar.setNavigationOnClickListener {
+
+                args.article.url?.let {
+                    launchOnLifecycleScope {
+                        existsItem(it).collectLatest {
+                            if (it) {
+                                saveArticle.setImageResource(R.drawable.ic_round_bookmark)
+                                saveArticle.isClickable = false
+                            }
+                        }
+                    }
+                }
+
+                clickBackEvent.observeEvent(viewLifecycleOwner) {
                     findNavController().navigateUp()
                 }
                 clickWebViewEvent.observeEvent(viewLifecycleOwner) {
                     val action =
                         ArticleFragmentDirections.actionArticleFragmentToWebViewFragment(it)
                     findNavController().navigate(action)
+                }
+                toastEvent.observeEvent(viewLifecycleOwner) {
+                    if (it)
+                        requireContext().setToast(R.string.favorite_content)
                 }
             }
         }
