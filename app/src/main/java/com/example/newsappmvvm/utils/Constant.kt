@@ -3,7 +3,7 @@ package com.example.newsappmvvm.utils
 import com.example.newsappmvvm.R
 import java.util.*
 
-const val API_KEY = ""
+const val API_KEY = "0b439ff0c3bf495381c1e079ea0eee0f"
 const val BASE_URL = "https://newsapi.org/"
 
 const val STORAGE_NAME = "data_Storage"
