@@ -10,7 +10,7 @@
             type="com.example.newsappmvvm.data.model.Article" />
 
         <variable
-            name="vm"
+            name="viewModel"
             type="com.example.newsappmvvm.ui.viewmodel.NewsViewModel" />
     </data>
 
@@ -64,7 +64,7 @@
                         android:layout_gravity="start"
                         android:padding="@dimen/size_6"
                         android:background="@drawable/shape_of_back_btn"
-                        android:onClick="@{() -> vm.onClickBack()}"
+                        android:onClick="@{() -> viewModel.onClickBack()}"
                         android:src="@drawable/ic_round_arrow_back" />
 
                     <androidx.appcompat.widget.AppCompatImageButton
@@ -74,7 +74,7 @@
                         android:layout_gravity="end"
                         android:layout_marginEnd="@dimen/size_8"
                         android:background="@android:color/transparent"
-                        android:onClick="@{() -> vm.onClickItemInsert(items)}"
+                        android:onClick="@{() -> viewModel.onClickItemInsert(items)}"
                         android:src="@drawable/ic_outline_bookmark_border" />
 
                 </androidx.appcompat.widget.Toolbar>
@@ -210,7 +210,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/size_10"
                 android:clickable="true"
-                android:onClick="@{() -> vm.onClickItemWebView(items)}"
+                android:onClick="@{() -> viewModel.onClickItemWebView(items)}"
                 android:text="@string/read_more"
                 android:textColor="@android:color/holo_orange_dark"
                 app:layout_constraintBottom_toBottomOf="parent"

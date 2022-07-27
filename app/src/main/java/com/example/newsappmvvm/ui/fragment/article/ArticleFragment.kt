@@ -19,13 +19,13 @@ class ArticleFragment : BaseFragment<FragmentArticleBinding>(R.layout.fragment_a
     override val showBottomNav = false
     override fun launchView() {
         binding.apply {
-            with(viewModel) {
-                vm = viewModel
+            with(this@ArticleFragment.viewModel) {
+                viewModel = this
                 items = args.article
 
                 args.article.url?.let {
                     launchOnLifecycleScope {
-                        existsItem(it).collectLatest {
+                        checkExistsItem(it).collectLatest {
                             if (it) {
                                 saveArticle.setImageResource(R.drawable.ic_round_bookmark)
                                 saveArticle.isClickable = false

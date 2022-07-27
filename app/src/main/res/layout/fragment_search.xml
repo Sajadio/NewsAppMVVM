@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="vm"
+            name="viewModel"
             type="com.example.newsappmvvm.ui.viewmodel.NewsViewModel" />
 
     </data>
@@ -26,7 +26,7 @@
                 android:layout_width="50dp"
                 android:layout_marginStart="@dimen/size_8"
                 android:layout_height="0dp"
-                android:onClick="@{() -> vm.onClickBack()}"
+                android:onClick="@{() -> viewModel.onClickBack()}"
                 app:layout_constraintStart_toStartOf="parent"
                 android:background="@drawable/shape_search_box"
                 android:src="@drawable/ic_round"

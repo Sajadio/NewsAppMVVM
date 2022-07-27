@@ -7,13 +7,14 @@ import kotlinx.coroutines.flow.Flow
 
 interface Repository {
 
+    suspend fun insertLocalArticles(article: Article): Boolean
+    suspend fun clearLocalArticle(localArticle: LocalArticle, reInsertItem: Boolean)
+    suspend fun clearAllLocalArticles()
+
     fun getBreakingNews(): Flow<PagingData<Article>>
     fun getResponseDataByQuery(query: String): Flow<PagingData<Article>>
     fun getResponseDataByCategory(category: String): Flow<PagingData<Article>>
-    suspend fun insertLocalArticle(article: Article): Boolean
-    suspend fun clearOneItem(localArticle: LocalArticle, reInsertItem: Boolean)
-    suspend fun clearLocalArticles()
     fun fetchLocalArticles(): Flow<List<LocalArticle>>
-    fun isExistsItem(url: String): Flow<Boolean>
+    fun checkExistsItem(url: String): Flow<Boolean>
 
 }

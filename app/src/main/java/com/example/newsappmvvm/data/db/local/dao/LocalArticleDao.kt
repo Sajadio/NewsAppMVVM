@@ -8,18 +8,18 @@ import kotlinx.coroutines.flow.Flow
 interface LocalArticleDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertLocalArticle(localArticle: LocalArticle): Long
+    suspend fun insertLocalArticles(localArticle: LocalArticle): Long
 
     @Query("SELECT * FROM LOCAL_ARTICLE_TABLE")
     fun fetchLocalArticles(): Flow<List<LocalArticle>>
 
     @Query("SELECT EXISTS (SELECT 1 FROM LOCAL_ARTICLE_TABLE WHERE url = :url)")
-    fun isExistsItem(url: String): Flow<Boolean>
+    fun checkExistsItem(url: String): Flow<Boolean>
 
     @Delete
-    suspend fun clearOneItem(localArticle: LocalArticle)
+    suspend fun clearLocalArticle(localArticle: LocalArticle)
 
     @Query("DELETE FROM LOCAL_ARTICLE_TABLE")
-    suspend fun clearLocalArticles()
+    suspend fun clearAllLocalArticles()
 
 }

@@ -13,5 +13,5 @@ interface PageKeysDao {
     suspend fun fetchPageKeys(id: Int): PageKeys
 
     @Query("DELETE FROM PAGE_KEY_TABLE")
-    suspend fun clearPageKeys()
+    suspend fun clearAllPageKeys()
 }

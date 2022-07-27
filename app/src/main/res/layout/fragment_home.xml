@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="vm"
+            name="viewModel"
             type="com.example.newsappmvvm.ui.viewmodel.NewsViewModel" />
 
     </data>
@@ -49,7 +49,7 @@
                         android:layout_marginEnd="@dimen/size_10"
                         android:background="@drawable/shape_of_search_btn"
                         android:clickable="true"
-                        android:onClick="@{() -> vm.onClickSearch()}"
+                        android:onClick="@{() -> viewModel.onClickSearch()}"
                         android:src="@drawable/ic_search"
                         app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50" />
 

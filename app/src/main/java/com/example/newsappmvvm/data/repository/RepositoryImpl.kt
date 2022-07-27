@@ -22,7 +22,7 @@ class RepositoryImpl @Inject constructor(
 
 
     override fun getBreakingNews(): Flow<PagingData<Article>> {
-        val pagingSourceFactory = { db.getRemoteArticleDao().fetchArticle() }
+        val pagingSourceFactory = { db.getRemoteArticleDao().fetchArticles() }
         return Pager(
             config = PagingConfig(pageSize = ITEMS_PER_PAGE,
                 prefetchDistance = PREF_DISTANCE,
@@ -54,22 +54,22 @@ class RepositoryImpl @Inject constructor(
         ).flow
     }
 
-    override suspend fun insertLocalArticle(article: Article): Boolean {
+    override suspend fun insertLocalArticles(article: Article): Boolean {
         val localArticle = MapperArticleImpl().map(article)
-        return db.getLocalArticleDao().insertLocalArticle(localArticle) > -1
+        return db.getLocalArticleDao().insertLocalArticles(localArticle) > -1
     }
 
-    override suspend fun clearOneItem(localArticle: LocalArticle, reInsertItem: Boolean) {
+    override suspend fun clearLocalArticle(localArticle: LocalArticle, reInsertItem: Boolean) {
         if (reInsertItem)
-            db.getLocalArticleDao().insertLocalArticle(localArticle)
+            db.getLocalArticleDao().insertLocalArticles(localArticle)
         else
-            db.getLocalArticleDao().clearOneItem(localArticle)
+            db.getLocalArticleDao().clearLocalArticle(localArticle)
     }
 
-    override suspend fun clearLocalArticles() = db.getLocalArticleDao().clearLocalArticles()
+    override suspend fun clearAllLocalArticles() = db.getLocalArticleDao().clearAllLocalArticles()
 
     override fun fetchLocalArticles() = db.getLocalArticleDao().fetchLocalArticles()
 
-    override fun isExistsItem(url: String) = db.getLocalArticleDao().isExistsItem(url)
+   override fun checkExistsItem(url: String) = db.getLocalArticleDao().checkExistsItem(url)
 
 }

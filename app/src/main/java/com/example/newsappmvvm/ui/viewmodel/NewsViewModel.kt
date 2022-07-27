@@ -42,7 +42,7 @@ class NewsViewModel(
     val clickWebViewEvent = MutableLiveData<Event<Article>>()
     val toastEvent = MutableLiveData<Event<Boolean>>()
 
-    val getSavedArticle: LiveData<List<LocalArticle>> = repository.fetchLocalArticles().asLiveData()
+    val fetchLocalArticles: LiveData<List<LocalArticle>> = repository.fetchLocalArticles().asLiveData()
 
     init {
         viewModelScope.launch {
@@ -86,19 +86,19 @@ class NewsViewModel(
         clickBackEvent.postValue(Event(true))
     }
 
-    fun deleteOneItem(localArticle: LocalArticle, reInsertItem: Boolean) {
+    fun clearLocalArticle(localArticle: LocalArticle, reInsertItem: Boolean) {
         viewModelScope.launch {
-            repository.clearOneItem(localArticle, reInsertItem)
+            repository.clearLocalArticle(localArticle, reInsertItem)
         }
     }
 
-    fun deleteAllItem() {
+    fun clearAllLocalArticles() {
         viewModelScope.launch {
-            repository.clearLocalArticles()
+            repository.clearAllLocalArticles()
         }
     }
 
-    fun existsItem(url: String) = repository.isExistsItem(url)
+    fun checkExistsItem(url: String) = repository.checkExistsItem(url)
 
     override fun onClickItemLocalMapArticle(localArticle: LocalArticle) {
         clickLocalMapperArticleEvent.postValue(
@@ -126,7 +126,7 @@ class NewsViewModel(
 
     override fun onClickItemInsert(article: Article) {
         viewModelScope.launch {
-            toastEvent.postValue(Event((repository.insertLocalArticle(article))))
+            toastEvent.postValue(Event((repository.insertLocalArticles(article))))
         }
     }
 

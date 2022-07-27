@@ -6,10 +6,6 @@
     <data>
         <variable name="url" type="String"/>
 
-        <variable
-            name="vm"
-            type="com.example.newsappmvvm.ui.viewmodel.NewsViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -5,15 +5,15 @@ import androidx.room.*
 import com.example.newsappmvvm.data.model.Article
 
 @Dao
-interface ArticleDao {
+interface RemoteArticleDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(article: List<Article>)
+    suspend fun insertArticle(article: List<Article>)
 
     @Query("SELECT * FROM ARTICLE_TABLE ORDER BY publishedAt DESC")
-    fun fetchArticle(): PagingSource<Int, Article>
+    fun fetchArticles(): PagingSource<Int, Article>
 
     @Query("DELETE FROM ARTICLE_TABLE")
-    suspend fun clearAllArticles()
+    suspend fun clearAllRemoteArticles()
 
 }

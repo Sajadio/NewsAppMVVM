@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsappmvvm.data.model.LocalArticle
-import com.example.newsappmvvm.ui.activity.NewsActivity
 import com.example.newsappmvvm.ui.fragment.favorite.adapter.FavoriteAdapter
 import com.example.newsappmvvm.utils.RecyclerViewSwipe
 import com.example.newsappmvvm.utils.observeEvent
@@ -22,23 +21,25 @@ import com.google.android.material.snackbar.Snackbar
 class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment_favorite) {
 
     override fun launchView() {
-        binding.vm = viewModel
-        initialRecyclerSwipe()
-        binding.deleteAllItems.setOnClickListener {
-            deleteAllArticles()
+        binding.apply {
+            viewModel = this@FavoriteFragment.viewModel
+            initialRecyclerSwipe()
+            deleteAllItems.setOnClickListener {
+                deleteAllArticles()
+            }
         }
     }
 
     private fun initialRecyclerSwipe() = with(binding) {
-        with(viewModel) {
-            val adapter = FavoriteAdapter(viewModel)
+        with(this@FavoriteFragment.viewModel) {
+            val adapter = FavoriteAdapter(this@with)
 
             val layoutManager = LinearLayoutManager(context)
             rvFavorite.layoutManager = layoutManager
             rvFavorite.setHasFixedSize(true)
             binding.rvFavorite.adapter = adapter
 
-            getSavedArticle.observe(viewLifecycleOwner) {
+            fetchLocalArticles.observe(viewLifecycleOwner) {
                 deleteAllItems.isVisible = it.isNotEmpty()
                 stateFavorite.isVisible = it.isEmpty()
                 adapter.updateData(it)
@@ -52,7 +53,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
             val callback = object : RecyclerViewSwipe(requireContext()) {
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                     if (direction == ItemTouchHelper.LEFT) {
-                        viewModel.deleteOneItem(adapter.deleteArticle(viewHolder.layoutPosition),
+                        viewModel.clearLocalArticle(adapter.deleteArticle(viewHolder.layoutPosition),
                             false)
                         setSnackbar(adapter.deleteArticle(viewHolder.layoutPosition))
                     }
@@ -75,7 +76,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
                 dialog.cancel()
             }
             .setPositiveButton(resources.getString(R.string.accept)) { _, _ ->
-                viewModel.deleteAllItem()
+                this@FavoriteFragment.viewModel.clearAllLocalArticles()
                 requireContext().setToast(R.string.un_favorite_content)
             }
             .show()
@@ -84,7 +85,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
     private fun setSnackbar(deleteArticle: LocalArticle) {
         Snackbar.make(requireView(), R.string.message_snack_bar, Snackbar.LENGTH_LONG)
             .setAction(R.string.action_text) {
-                viewModel.deleteOneItem(deleteArticle, true)
+                this@FavoriteFragment.viewModel.clearLocalArticle(deleteArticle, true)
             }
             .show()
     }

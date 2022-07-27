@@ -31,43 +31,48 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 
     override fun launchView() {
         binding.apply {
-            binding.vm = viewModel
-            clearText.setOnClickListener {
-                searchBox.text.clear()
-            }
-            searchBox.addTextChangedListener(object : TextWatcher {
-                override fun afterTextChanged(s: Editable) {}
-                override fun beforeTextChanged(
-                    s: CharSequence,
-                    start: Int,
-                    count: Int,
-                    after: Int,
-                ) {
+            with(this@SearchFragment.viewModel) {
+                viewModel = this
+                clearText.setOnClickListener {
+                    searchBox.text.clear()
                 }
+                searchBox.addTextChangedListener(object : TextWatcher {
+                    override fun afterTextChanged(s: Editable) {}
+                    override fun beforeTextChanged(
+                        s: CharSequence,
+                        start: Int,
+                        count: Int,
+                        after: Int,
+                    ) {
+                    }
 
-                override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                    launchOnLifecycleScope {
-                        delay(1000L)
-                        s.toString().trim().filter { it.toString().isNotEmpty() }.let {
-                            viewModel.getResponseDataByQuery(it)
-                            initialAdapter()
+                    override fun onTextChanged(
+                        s: CharSequence,
+                        start: Int,
+                        before: Int,
+                        count: Int,
+                    ) {
+                        launchOnLifecycleScope {
+                            delay(1000L)
+                            s.toString().trim().filter { it.toString().isNotEmpty() }.let {
+                                getResponseDataByQuery(it)
+                                initialAdapter()
+                            }
                         }
                     }
+                })
+
+                clickBackEvent.observeEvent(viewLifecycleOwner) {
+                    findNavController().navigateUp()
                 }
-            })
-        }
-        viewModel.clickBackEvent.observeEvent(this) {
-            findNavController().navigateUp()
+            }
         }
     }
 
-
     private fun initialAdapter() {
-        adapter = SearchPagingAdapter(viewModel)
+        adapter = SearchPagingAdapter(this@SearchFragment.viewModel)
         binding.apply {
             with(adapter) {
-
-
                 val layoutManager = LinearLayoutManager(context)
                 rvSearching.layoutManager = layoutManager
                 rvSearching.setHasFixedSize(true)
@@ -78,10 +83,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
                     footer = PagingLoadStateAdapter(this)
                 )
 
-                with(viewModel) {
+                with(this@SearchFragment.viewModel) {
                     launchOnLifecycleScope {
                         newsQuery.collect { submitData(it) }
-
                         clickArticleEvent.observeEvent(viewLifecycleOwner) {
                             val action =
                                 SearchFragmentDirections.actionSearchFragmentToArticleFragment(it)
@@ -92,7 +96,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
                             collect {
                                 swipeRefresh.isRefreshing = it.refresh is LoadState.Loading
                             }
-
                             distinctUntilChangedBy { it.refresh }
                                 .filter { it.refresh is LoadState.NotLoading }
                                 .collect { rvSearching.scrollToPosition(0) }
@@ -103,3 +106,4 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         }
     }
 }
+

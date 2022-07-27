@@ -55,8 +55,8 @@ class ArticleRemoteMediator(
 
             db.withTransaction {
                 if (loadType == LoadType.REFRESH) {
-                    articleDao.clearAllArticles()
-                    pageKeysDao.clearPageKeys()
+                    articleDao.clearAllRemoteArticles()
+                    pageKeysDao.clearAllPageKeys()
                 }
 
                 val prevPage = if (currentPage == 1) null else currentPage - 1
@@ -70,7 +70,7 @@ class ArticleRemoteMediator(
                     )
                 }
                 keys?.let { pageKeysDao.insertPageKeys(remoteKeys = keys) }
-                response?.let { articleDao.insert(article = response) }
+                response?.let { articleDao.insertArticle(article = response) }
             }
             MediatorResult.Success(endOfPaginationReached = endOfPaginationReached == true)
         } catch (exception: IOException) {

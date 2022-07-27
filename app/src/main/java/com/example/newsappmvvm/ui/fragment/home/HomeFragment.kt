@@ -26,8 +26,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 
     override fun launchView() {
         binding.apply {
-            vm = viewModel
-            adapter = BreakingNewsPagingAdapter(viewModel)
+            viewModel = this@HomeFragment.viewModel
+            adapter = BreakingNewsPagingAdapter(this@HomeFragment.viewModel)
 
             changeTheme.setOnClickListener {
                 setupDialog()
@@ -45,7 +45,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                     footer = PagingLoadStateAdapter(this)
                 )
 
-                with(viewModel) {
+                with(this@HomeFragment.viewModel) {
 
                     clickArticleEvent.observeEvent(viewLifecycleOwner){
                         val action = HomeFragmentDirections.actionHomeFragmentToArticleFragment(it)
