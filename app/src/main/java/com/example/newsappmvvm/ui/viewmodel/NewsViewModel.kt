@@ -2,6 +2,7 @@ package com.example.newsappmvvm.ui.viewmodel
 
 import androidx.lifecycle.*
 import androidx.paging.*
+import com.example.newsappmvvm.data.mapper.MapperLocalArticleImpl
 import com.example.newsappmvvm.data.model.Article
 import com.example.newsappmvvm.data.model.LocalArticle
 import com.example.newsappmvvm.data.repository.RepositoryImpl
@@ -16,7 +17,7 @@ import kotlinx.coroutines.launch
 @ExperimentalPagingApi
 class NewsViewModel(
     private val repository: RepositoryImpl,
-    private val dataStorage: DataStorageImp
+    private val dataStorage: DataStorageImp,
 ) : ViewModel(), OnItemClickListener {
 
     val selectedTheme = dataStorage.uiModeFlow.asLiveData()
@@ -37,12 +38,13 @@ class NewsViewModel(
 
     val clickSearchEvent: MutableLiveData<Event<Boolean>> = MutableLiveData()
     val clickBackEvent: MutableLiveData<Event<Boolean>> = MutableLiveData()
-    val clickLocalMapperArticleEvent = MutableLiveData<Event<Article>>()
+    val clickMapperLocalArticleEvent = MutableLiveData<Event<Article>>()
     val clickArticleEvent = MutableLiveData<Event<Article>>()
     val clickWebViewEvent = MutableLiveData<Event<Article>>()
     val toastEvent = MutableLiveData<Event<Boolean>>()
 
-    val fetchLocalArticles: LiveData<List<LocalArticle>> = repository.fetchLocalArticles().asLiveData()
+    val fetchLocalArticles: LiveData<List<LocalArticle>> =
+        repository.fetchLocalArticles().asLiveData()
 
     init {
         viewModelScope.launch {
@@ -101,18 +103,9 @@ class NewsViewModel(
     fun checkExistsItem(url: String) = repository.checkExistsItem(url)
 
     override fun onClickItemLocalMapArticle(localArticle: LocalArticle) {
-        clickLocalMapperArticleEvent.postValue(
-            Event(Article(
-                articleId = localArticle.articleId,
-                author = localArticle.author,
-                content = localArticle.content,
-                description = localArticle.description,
-                publishedAt = localArticle.publishedAt,
-                url = localArticle.url,
-                source = localArticle.source,
-                urlToImage = localArticle.urlToImage,
-            )
-            )
+        val mapperLocalArticle = MapperLocalArticleImpl().map(localArticle)
+        clickMapperLocalArticleEvent.postValue(
+            Event(mapperLocalArticle)
         )
     }
 

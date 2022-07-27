@@ -45,7 +45,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(R.layout.fragment
                 adapter.updateData(it)
             }
 
-            clickLocalMapperArticleEvent.observeEvent(viewLifecycleOwner) {
+            clickMapperLocalArticleEvent.observeEvent(viewLifecycleOwner) {
                 val action = FavoriteFragmentDirections.actionFavoriteFragmentToArticleFragment(it)
                 findNavController().navigate(action)
             }

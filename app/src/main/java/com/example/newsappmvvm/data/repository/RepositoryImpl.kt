@@ -2,7 +2,7 @@ package com.example.newsappmvvm.data.repository
 
 import androidx.paging.*
 import com.example.newsappmvvm.data.db.local.AppDB
-import com.example.newsappmvvm.data.mapper.MapperArticleImpl
+import com.example.newsappmvvm.data.mapper.MapperRemoteArticleImpl
 import com.example.newsappmvvm.data.model.Article
 import com.example.newsappmvvm.data.model.LocalArticle
 import com.example.newsappmvvm.data.network.ApiService
@@ -55,7 +55,7 @@ class RepositoryImpl @Inject constructor(
     }
 
     override suspend fun insertLocalArticles(article: Article): Boolean {
-        val localArticle = MapperArticleImpl().map(article)
+        val localArticle = MapperRemoteArticleImpl().map(article)
         return db.getLocalArticleDao().insertLocalArticles(localArticle) > -1
     }
 

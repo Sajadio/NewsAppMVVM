@@ -3,9 +3,9 @@ package com.example.newsappmvvm.data.mapper
 import com.example.newsappmvvm.data.model.Article
 import com.example.newsappmvvm.data.model.LocalArticle
 
-class MapperArticleImpl : MapperNews<Article, LocalArticle> {
-    override fun map(input: Article): LocalArticle {
-        return LocalArticle(
+class MapperLocalArticleImpl : MapperNews<LocalArticle, Article> {
+    override fun map(input: LocalArticle): Article {
+        return Article(
             articleId = input.articleId,
             author = input.author,
             content = input.content,
